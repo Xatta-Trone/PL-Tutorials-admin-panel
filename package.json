@@ -1,0 +1,25 @@
+{
+  "name": "mazer-static-nuxt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@popperjs/core": "^2.9.2",
+    "core-js": "^3.15.1",
+    "nuxt": "^2.15.7",
+    "nuxt-lazy-load": "^1.2.6",
+    "smooth-scrollbar": "^8.6.3",
+    "vuebar": "^0.0.20",
+    "vuescroll": "^4.17.3"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.3.2"
+  }
+}
