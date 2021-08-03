@@ -15,7 +15,7 @@ export default [
     submenu: [
       {
         name: 'Alert',
-        url: '/components/alert',
+        url: '/login',
       },
       {
         name: 'Badge',

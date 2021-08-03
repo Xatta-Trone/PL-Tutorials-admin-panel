@@ -90,11 +90,57 @@ export default {
     // https://go.nuxtjs.dev/axios
     'nuxt-lazy-load',
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
 
+  auth: {
+    strategies: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: 'http://localhost:8000/api/v1',
+
+        endpoints: {
+          login: { url: '/admin/login', method: 'post' },
+          logout: { url: '/admin/logout', method: 'get' },
+          user: { url: '/admin/me', method: 'get' },
+        },
+        user: {
+          // property: 'user',
+          // autoFetch: false,
+        },
+        token: {
+          property: 'access_token',
+          global: true,
+          required: true,
+          type: 'Bearer',
+        },
+      },
+    },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: '/login',
+      home: '/',
+    },
+    localStorage: false,
+    resetOnError: true,
+    rewriteRedirects: true,
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    credentials: true,
+  },
+  // proxy: {
+  //   '/laravel': {
+  //     target: 'https://laravel-auth.nuxtjs.app',
+  //     pathRewrite: { '^/laravel': '/' },
+  //   },
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  router: {
+    middleware: ['auth'],
+  },
 }
