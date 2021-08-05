@@ -81,7 +81,8 @@ export default {
   },
   mounted() {
     document.querySelector('.sidebar-hide').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('active')
+      document.getElementById('sidebar').classList.remove('active')
+      console.log('cloked', document.getElementById('sidebar'))
     })
     function slideToggle(t, e, o) {
       0 === t.clientHeight ? j(t, e, o, !0) : j(t, e, o)
