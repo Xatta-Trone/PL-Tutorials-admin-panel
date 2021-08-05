@@ -9,6 +9,16 @@ export default [
     icon: 'grid-fill',
   },
   {
+    name: 'User Data',
+    url: '/userdata',
+    icon: 'grid-fill',
+  },
+  {
+    name: 'Users',
+    url: '/users',
+    icon: 'grid-fill',
+  },
+  {
     name: 'Components',
     key: 'components',
     icon: 'stack',

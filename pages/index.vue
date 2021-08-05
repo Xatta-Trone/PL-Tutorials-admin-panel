@@ -18,10 +18,10 @@ export default {
         let response = await this.$auth.logout('laravelSanctum')
         console.log(response)
 
-        if (response.data == 1) {
-          console.log(response.data)
-        }
-        this.$router.push('/login')
+        // if (response.data == 1) {
+        //   console.log(response.data)
+        // }
+        // this.$router.push('/login')
       } catch (err) {
         console.log('err', err)
       }

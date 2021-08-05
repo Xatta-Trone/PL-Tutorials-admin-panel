@@ -1,78 +1,88 @@
 <template>
-  <div class="sidebar-wrapper active">
-    <div class="sidebar-header">
-      <div class="d-flex justify-content-between">
-        <div class="logo">
-          <router-link to="/"
-            ><img
-              data-src="~/static/assets/images/logo/logo.png"
-              v-lazy-load
-              alt="Logo"
-              srcset=""
-          /></router-link>
-        </div>
-        <div class="toggler">
-          <a href="#" class="sidebar-hide d-xl-none d-block"
-            ><i class="bi bi-x bi-middle"></i
-          ></a>
+  <div id="sidebar" class="active">
+    <div class="sidebar-wrapper active">
+      <div class="sidebar-header">
+        <div class="d-flex justify-content-between">
+          <div class="logo">
+            <router-link to="/"
+              ><img
+                data-src="~/static/assets/images/logo/logo.png"
+                v-lazy-load
+                alt="Logo"
+                srcset=""
+            /></router-link>
+          </div>
+          <div class="toggler">
+            <a href="#" class="sidebar-hide d-xl-none d-block"
+              ><i class="bi bi-x bi-middle"></i
+            ></a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="sidebar-menu">
-      <ul class="menu">
-        <template v-for="item in $store.state.sideBarItems">
-          <li class="sidebar-title" v-if="item.isTitle" :key="item.key">
-            {{ item.name }}
+      <div class="sidebar-menu">
+        <ul class="menu">
+          <li class="sidebar-title">
+            <div class="avatar bg-primary me-3">
+              <span class="avatar-content">{{ $auth.user.user_letter }}</span>
+            </div>
+            {{ $auth.user.name }}
           </li>
-          <li
-            class="sidebar-item"
-            :class="{
-              active: isActive(item.url) || subIsActive(item),
-              'has-sub': isHasSub(item),
-            }"
-            v-else
-            :key="item.key"
-          >
-            <template v-if="isHasSub(item)">
-              <a class="sidebar-link">
-                <i :class="`bi bi-${item.icon}`"></i>
-                <span>{{ item.name }}</span>
-              </a>
-              <ul class="submenu" :class="{ active: subIsActive(item) }">
-                <template v-for="sub in item.submenu">
-                  <li
-                    class="submenu-item"
-                    :class="{ active: isActive(sub.url) }"
-                    :key="sub.key"
-                  >
-                    <nuxt-link :to="sub.url">{{ sub.name }}</nuxt-link>
-                  </li>
-                </template>
-              </ul>
-            </template>
-            <template v-else>
-              <nuxt-link class="sidebar-link" :to="item.url">
-                <i :class="`bi bi-${item.icon}`"></i>
-                <span>{{ item.name }}</span>
-              </nuxt-link>
-            </template>
-          </li>
-        </template>
-      </ul>
+          <template v-for="item in $store.state.sideBarItems">
+            <li class="sidebar-title" v-if="item.isTitle" :key="item.key">
+              {{ item.name }}
+            </li>
+            <li
+              class="sidebar-item"
+              :class="{
+                active: isActive(item.url) || subIsActive(item),
+                'has-sub': isHasSub(item),
+              }"
+              v-else
+              :key="item.key"
+            >
+              <template v-if="isHasSub(item)">
+                <a class="sidebar-link">
+                  <i :class="`bi bi-${item.icon}`"></i>
+                  <span>{{ item.name }}</span>
+                </a>
+                <ul class="submenu" :class="{ active: subIsActive(item) }">
+                  <template v-for="sub in item.submenu">
+                    <li
+                      class="submenu-item"
+                      :class="{ active: isActive(sub.url) }"
+                      :key="sub.key"
+                    >
+                      <nuxt-link :to="sub.url">{{ sub.name }}</nuxt-link>
+                    </li>
+                  </template>
+                </ul>
+              </template>
+              <template v-else>
+                <nuxt-link class="sidebar-link" :to="item.url">
+                  <i :class="`bi bi-${item.icon}`"></i>
+                  <span>{{ item.name }}</span>
+                </nuxt-link>
+              </template>
+            </li>
+          </template>
+        </ul>
+      </div>
+      <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
     </div>
-    <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
   </div>
 </template>
 
 <script>
 import Vuebar from 'vuebar'
-import Scrollbar from 'smooth-scrollbar'
 
 export default {
   components: {
     Vuebar,
   },
   mounted() {
+    document.querySelector('.sidebar-hide').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('active')
+    })
     function slideToggle(t, e, o) {
       0 === t.clientHeight ? j(t, e, o, !0) : j(t, e, o)
     }
@@ -158,20 +168,12 @@ export default {
         document.getElementById('sidebar').classList.add('active')
       }
     })
-    document.querySelector('.burger-btn').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('active')
-    })
-    document.querySelector('.sidebar-hide').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('active')
-    })
+
+    // document.querySelector('.sidebar-hide').addEventListener('click', () => {
+    //   document.getElementById('sidebar').classList.toggle('active')
+    // })
 
     this.$nextTick(function () {
-      document.querySelector('.burger-btn').addEventListener('click', () => {
-        document.getElementById('sidebar').classList.toggle('active')
-      })
-      document.querySelector('.sidebar-hide').addEventListener('click', () => {
-        document.getElementById('sidebar').classList.toggle('active')
-      })
       // Scrollbar.init(document.querySelector('.sidebar-wrapper'))
       // Perfect Scrollbar Init
       // if (typeof PerfectScrollbar.default == 'function') {
@@ -236,7 +238,7 @@ export default {
 
 .sidebar-wrapper .sidebar-header {
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0rem;
 }
 
 /* Works on Firefox */

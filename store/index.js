@@ -1,5 +1,5 @@
-  
-import sideBarItems from './data/sideBarItems';
+import sideBarItems from './data/sideBarItems'
 export const state = () => ({
-    sideBarItems
-});
+  sideBarItems,
+  URL: 'http://pltutorials8.xt:8080/api/v1/',
+})

@@ -65,13 +65,21 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // {
-    //   src: '~/plugins/mazer/vendors/perfect-scrollbar/perfect-scrollbar.min.js',
-    //   ssr: false,
-    // },
     {
       src: '~/plugins/mazer/js/bootstrap.min.js',
       ssr: false,
+    },
+    {
+      src: '~/plugins/vue-tables-2.js',
+    },
+    {
+      src: '~/plugins/fontawesome.js',
+    },
+    {
+      src: '~/plugins/vuetoastification.js',
+    },
+    {
+      src: '~/plugins/mixin.js',
     },
     // {
     //   src: '~/plugins/perfect-scrollbar.js',
@@ -91,6 +99,7 @@ export default {
     'nuxt-lazy-load',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    // 'nuxt-fontawesome',
   ],
 
   auth: {
@@ -106,7 +115,7 @@ export default {
         },
         user: {
           // property: 'user',
-          // autoFetch: false,
+          autoFetch: true,
         },
         token: {
           property: 'access_token',
@@ -131,6 +140,7 @@ export default {
   axios: {
     credentials: true,
   },
+
   // proxy: {
   //   '/laravel': {
   //     target: 'https://laravel-auth.nuxtjs.app',
@@ -139,7 +149,10 @@ export default {
   // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    // use vue mixins
+    transpile: ['mixins'],
+  },
   router: {
     middleware: ['auth'],
   },
