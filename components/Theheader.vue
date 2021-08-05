@@ -8,7 +8,11 @@
 
 <script>
 export default {
-
+  mounted() {
+    document.querySelector('.burger-btn').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('active')
+    })
+  },
 }
 </script>
 
