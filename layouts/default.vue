@@ -1,11 +1,19 @@
 <template>
-  <div id="app">
-    <Sidebar></Sidebar>
-
-    <div id="main">
-      <Theheader></Theheader>
-      <Nuxt />
-      <Thefooter></Thefooter>
-    </div>
-  </div>
+  <Nuxt />
 </template>
+
+<script>
+export default {
+  head: {
+    titleTemplate: '%s - Nuxt.js',
+    meta: [],
+    link: [
+      {
+        rel: 'stylesheet',
+
+        href: '/assets/css/pages/auth.css',
+      },
+    ],
+  },
+}
+</script>

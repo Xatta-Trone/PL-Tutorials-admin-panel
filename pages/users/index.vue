@@ -1,6 +1,7 @@
 
 <template>
   <div>
+    {{ $config.BASE_URL }}
     <pageheader title="Users"></pageheader>
     <v-server-table
       url="http://pltutorials8.xt:8080/api/v1/admin/users"
@@ -31,6 +32,8 @@
 // import customdelete from '~/components/datatables/customdelete.vue'
 export default {
   // middleware: 'guest',
+  layout: 'app',
+
   data() {
     return {
       columns: ['id', 'name', 'email', 'student_id', 'status', 'actions'],

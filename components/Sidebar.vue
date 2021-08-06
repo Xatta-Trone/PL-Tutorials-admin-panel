@@ -31,7 +31,9 @@
             <li class="sidebar-title" v-if="item.isTitle" :key="item.key">
               {{ item.name }}
             </li>
+
             <li
+              v-show="$store.getters.checkPermission(item.permission)"
               class="sidebar-item"
               :class="{
                 active: isActive(item.url) || subIsActive(item),
@@ -51,6 +53,7 @@
                       class="submenu-item"
                       :class="{ active: isActive(sub.url) }"
                       :key="sub.key"
+                      v-show="$store.getters.checkPermission(sub.permission)"
                     >
                       <nuxt-link :to="sub.url">{{ sub.name }}</nuxt-link>
                     </li>
@@ -60,7 +63,7 @@
               <template v-else>
                 <nuxt-link class="sidebar-link" :to="item.url">
                   <i :class="`bi bi-${item.icon}`"></i>
-                  <span>{{ item.name }}</span>
+                  <span>{{ item.name }} {{ item.permission }}</span>
                 </nuxt-link>
               </template>
             </li>
@@ -197,7 +200,9 @@ export default {
     // }
 
     // Scroll into active sidebar
-    document.querySelector('.sidebar-item.active').scrollIntoView(false)
+    if (document.querySelector('.sidebar-item.active')) {
+      document.querySelector('.sidebar-item.active').scrollIntoView(false)
+    }
   },
   updated() {
     let a = document.querySelector('.sidebar-wrapper')

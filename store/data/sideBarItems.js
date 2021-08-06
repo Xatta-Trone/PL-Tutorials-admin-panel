@@ -7,25 +7,30 @@ export default [
     name: 'Dashboard',
     url: '/',
     icon: 'grid-fill',
+    permission: 'dashboard',
   },
   {
     name: 'User Data',
     url: '/userdata',
     icon: 'grid-fill',
+    permission: 'dashboard',
   },
   {
     name: 'Users',
     url: '/users',
     icon: 'grid-fill',
+    permission: 'user_show',
   },
   {
     name: 'Components',
     key: 'components',
     icon: 'stack',
+    permission: 'dashboard',
     submenu: [
       {
         name: 'Alert',
         url: '/login',
+        permission: 'dashboard',
       },
       {
         name: 'Badge',
@@ -85,6 +90,7 @@ export default [
     name: 'Extra Components',
     key: 'extra-component',
     icon: 'collection-fill',
+    permission: 'dashboard',
     submenu: [
       {
         name: 'Avatar',

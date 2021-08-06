@@ -1,3 +1,4 @@
+require('dotenv').config()
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -81,6 +82,10 @@ export default {
     {
       src: '~/plugins/mixin.js',
     },
+    {
+      src: '~/plugins/vue-gates.js',
+    },
+
     // {
     //   src: '~/plugins/perfect-scrollbar.js',
     //   ssr: false,
@@ -99,7 +104,7 @@ export default {
     'nuxt-lazy-load',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    // 'nuxt-fontawesome',
+    '@nuxtjs/dotenv',
   ],
 
   auth: {
@@ -139,6 +144,17 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     credentials: true,
+    baseURL: 'http://pltutorials8.xt:8080/api/v1/',
+    requestInterceptor: (config, { store }) => {
+      config.headers.common['access-token'] =
+        store.state.user.headers.access_token
+      config.headers.common['token-type'] = store.state.user.headers.token_type
+      config.headers.common['client'] = store.state.user.headers.client
+      config.headers.common['expiry'] = store.state.user.headers.expiry
+      config.headers.common['uid'] = store.state.user.headers.uid
+      return config
+    },
+    responseInterceptor: (res, ctx) => {},
   },
 
   // proxy: {

@@ -23,6 +23,7 @@
 // import customdelete from '~/components/datatables/customdelete.vue'
 export default {
   // middleware: 'guest',
+  layout: 'app',
   data() {
     return {
       columns: [
@@ -47,6 +48,7 @@ export default {
     handle(data) {
       console.log(data)
     },
+    test() {},
   },
   mounted() {
     // Event.$on('vue-tables.error', (e) => {

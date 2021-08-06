@@ -1,12 +1,47 @@
 import Vue from 'vue'
+// import { AbilityBuilder } from '@casl/ability'
 
 var mixin = {
+  async asyncData({ $axios, store, app }) {
+    $axios
+      .get('/admin/permissions')
+      .then((res) => {
+        console.log(app)
+        if (res.status == 200) {
+          store.commit('addPermissions', res.data)
+          app.$gates.setPermissions(res.data)
+
+          console.log(app.$gates.getPermissions())
+          // const { can, rules } = new AbilityBuilder()
+          // $ability.update(can(...res.data))
+        }
+      })
+      .catch((err) => console.log(err))
+  },
   data: function () {
     return {
       serverurl: 'http://localhost:8080/api/v1/',
     }
   },
+  mounted() {
+    // this.$nextTick(function () {
+    //   this.getpermission()
+    // })
+  },
+  created() {
+    // this.getpermission()
+  },
+  beforeMount() {
+    // this.getpermission()
+  },
   methods: {
+    getpermission() {
+      this.$axios
+        .get('/admin/permissions')
+        .then((res) => this.$gates.setPermissions(res.data))
+        .catch((err) => console.log(err))
+    },
+
     getmessage(statusmessage) {
       switch (statusmessage) {
         case 'INVALID_EMAIL_PASSWORD':

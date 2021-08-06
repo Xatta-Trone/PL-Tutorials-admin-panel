@@ -12,11 +12,17 @@
 <script>
 export default {
   middleware: 'auth',
+  layout: 'app',
+  mounted() {
+    // this.$forceUpdate()
+    // this.$nextTick(() => window.location.reload())
+  },
   methods: {
     async logout() {
       try {
         let response = await this.$auth.logout('laravelSanctum')
         console.log(response)
+        this.$gates.setPermissions([])
 
         // if (response.data == 1) {
         //   console.log(response.data)

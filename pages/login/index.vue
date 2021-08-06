@@ -46,7 +46,6 @@
 </template>
 <script>
 export default {
-  layout: 'auth',
   head: {
     titleTemplate: '%s - Nuxt.js',
     meta: [],
@@ -63,14 +62,18 @@ export default {
   methods: {
     async userLogin() {
       try {
-        let response = await this.$auth.loginWith('laravelSanctum', {
-          data: this.login,
-        })
-
-        // if (response.data.message == 'ACCOUNT_NOT_ACTIVE') {
-        //   this.getmessage(response.data.message)
-        // }
-        // console.log(response.data)
+        let response = await this.$auth
+          .loginWith('laravelSanctum', {
+            data: this.login,
+          })
+          .then((res) => {
+            console.log('asdfsf')
+            this.$axios
+              .get('/admin/permissions')
+              .then((res) => this.$gates.setPermissions(res.data))
+              // .then((res) => this.$forceUpdate())
+              .catch((err) => console.log(err))
+          })
       } catch (err) {
         console.log(err)
 
