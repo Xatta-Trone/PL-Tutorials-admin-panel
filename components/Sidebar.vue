@@ -33,7 +33,7 @@
             </li>
 
             <li
-              v-show="$store.getters.checkPermission(item.permission)"
+              v-show="$can(item.permission)"
               class="sidebar-item"
               :class="{
                 active: isActive(item.url) || subIsActive(item),
@@ -53,7 +53,7 @@
                       class="submenu-item"
                       :class="{ active: isActive(sub.url) }"
                       :key="sub.key"
-                      v-show="$store.getters.checkPermission(sub.permission)"
+                      v-show="$can(item.permission)"
                     >
                       <nuxt-link :to="sub.url">{{ sub.name }}</nuxt-link>
                     </li>

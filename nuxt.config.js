@@ -85,6 +85,9 @@ export default {
     {
       src: '~/plugins/vue-gates.js',
     },
+    {
+      src: '~/plugins/can.js',
+    },
 
     // {
     //   src: '~/plugins/perfect-scrollbar.js',
