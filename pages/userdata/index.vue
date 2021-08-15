@@ -1,7 +1,6 @@
 
 <template>
   <div>
-    <div>{{ $can('dashboard') }}</div>
     <pageheader title="User data"></pageheader>
     <v-server-table
       url="http://pltutorials8.xt:8080/api/v1/admin/userdatas/"
@@ -9,7 +8,7 @@
       :options="options"
     >
       <div slot="actions" slot-scope="{ row }">
-        <a v-if="row.status == 0" href="" @click.prevent="handle(row)"
+        <a v-if="row.status == 0" href="" @click.prevent="add(row)"
           ><font-awesome-icon icon="user-plus"
         /></a>
         <span v-if="row.status == 1"
@@ -39,17 +38,29 @@ export default {
         perPage: 10,
         perPageValues: [5, 10, 15, 25, 50, 100],
         pagination: { chunk: 5 },
-        // templates: {
-        //   customdelete,
-        // },
+        requestFunction(data) {
+          let vm = this
+          return this.$axios
+            .get(this.url, {
+              params: data,
+            })
+            .catch(function (e) {
+              // this.dispatch('error', e)
+              console.log('Err in datatble', e)
+              vm.getmessage('Err in datatble')
+            })
+        },
       },
     }
   },
   methods: {
-    handle(data) {
+    add(data) {
       console.log(data)
+      this.$nuxt.$router.push({
+        path: '/userdata/add/' + data.id,
+        query: { name: data.student_name, studentid: data.student_id },
+      })
     },
-    test() {},
   },
   mounted() {
     // Event.$on('vue-tables.error', (e) => {

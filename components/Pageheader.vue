@@ -10,11 +10,12 @@
             aria-label="breadcrumb"
             class="breadcrumb-header float-start float-lg-end"
           >
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <router-link to="/">Dashboard</router-link>
-              </li>
-            </ol>
+            <router-link
+              v-show="urlto != ''"
+              :to="urlto"
+              class="btn btn-primary"
+              >{{ urltxt }}</router-link
+            >
           </nav>
         </div>
       </div>
@@ -28,6 +29,17 @@ export default {
       type: String,
       default: '',
     },
+    urlto: {
+      type: String,
+      default: '',
+    },
+    urltxt: {
+      type: String,
+      default: 'Add',
+    },
+  },
+  mounted() {
+    console.log(this.$nuxt.$route)
   },
 }
 </script>

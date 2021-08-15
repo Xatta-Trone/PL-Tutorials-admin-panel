@@ -33,7 +33,7 @@
             </div>
 
             <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
-              Log in
+              {{ btntxt }}
             </button>
           </form>
         </div>
@@ -53,6 +53,7 @@ export default {
   data() {
     return {
       user: null,
+      btntxt: 'Log in',
       login: {
         email: 'monzurul.ce.buet@gmail.com',
         password: '123456',
@@ -62,11 +63,13 @@ export default {
   methods: {
     async userLogin() {
       try {
+        this.btntxt = 'Logging in.....'
         let response = await this.$auth
           .loginWith('laravelSanctum', {
             data: this.login,
           })
           .then((res) => {
+            this.btntxt = 'Login successful'
             console.log('asdfsf')
             this.$axios
               .get('/admin/permissions')
@@ -75,6 +78,7 @@ export default {
               .catch((err) => console.log(err))
           })
       } catch (err) {
+        this.btntxt = 'Log in'
         console.log(err)
 
         if ((err.response.status = 401)) {

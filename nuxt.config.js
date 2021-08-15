@@ -38,6 +38,10 @@ export default {
         rel: 'stylesheet',
         href: '/assets/css/app.css',
       },
+      {
+        rel: 'stylesheet',
+        href: '/assets/css/custom.css',
+      },
     ],
     script: [
       // {
@@ -87,6 +91,12 @@ export default {
     },
     {
       src: '~/plugins/can.js',
+    },
+    {
+      src: '~/plugins/vuelidate.js',
+    },
+    {
+      src: '~/plugins/contentplaceholder.js',
     },
 
     // {

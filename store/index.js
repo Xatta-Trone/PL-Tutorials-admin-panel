@@ -3,7 +3,7 @@ import sideBarItems from './data/sideBarItems'
 
 export const state = () => ({
   sideBarItems,
-  URL: 'http://pltutorials8.xt:8080/api/v1/',
+  BASE_URL: 'http://pltutorials8.xt:8080/api/v1/admin',
   permissions: [],
 })
 
@@ -18,7 +18,7 @@ export const mutations = {
 
 export const getters = {
   checkPermission: (state) => (permission) => {
-    console.log(permission, state.permissions.includes(permission))
+    // console.log(permission, state.permissions.includes(permission))
     return state.permissions.includes(permission)
   },
 }

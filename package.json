@@ -23,10 +23,13 @@
     "nuxt": "^2.15.7",
     "nuxt-lazy-load": "^1.2.6",
     "smooth-scrollbar": "^8.6.3",
+    "vue-content-placeholders": "^0.2.1",
     "vue-gates": "^2.1.2",
     "vue-tables-2": "^2.3.1",
     "vue-toastification": "^1.7.11",
     "vuebar": "^0.0.20",
+    "vuelidate": "^0.7.6",
+    "vuelidate-error-extractor": "^2.4.1",
     "vuescroll": "^4.17.3"
   },
   "devDependencies": {
