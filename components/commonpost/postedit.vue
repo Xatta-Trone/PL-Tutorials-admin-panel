@@ -428,7 +428,7 @@ export default {
     getdepartments() {
       this.loading = true
       this.$axios
-        .get('getdepartments/')
+        .get('/admin/getdepartments/')
         .then((res) => {
           this.loading = false
           console.log(res)
@@ -459,7 +459,7 @@ export default {
       console.log(dept_id, this.form.department_slug)
 
       this.$axios
-        .get('getlevelterms/' + dept_id[0]['id'])
+        .get('/admin/getlevelterms/' + dept_id[0]['id'])
         .then((res) => {
           console.log(res)
           if (res.data.hasOwnProperty('message')) {
@@ -493,7 +493,7 @@ export default {
       })
 
       this.$axios
-        .get('getcourse/' + dept[0]['id'] + '/' + levelterm[0]['id'])
+        .get('/admin/getcourse/' + dept[0]['id'] + '/' + levelterm[0]['id'])
         .then((res) => {
           console.log(res)
           if (res.data.hasOwnProperty('message')) {

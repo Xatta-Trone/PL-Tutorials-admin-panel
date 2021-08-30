@@ -363,7 +363,7 @@ export default {
 
     getdepartments() {
       this.$axios
-        .get('getdepartments/')
+        .get('admin/getdepartments/')
         .then((res) => {
           console.log(res)
           if (res.data.hasOwnProperty('message')) {

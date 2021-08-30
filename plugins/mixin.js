@@ -1,6 +1,9 @@
 import Vue from 'vue'
 // import { AbilityBuilder } from '@casl/ability'
 
+const baseURL = 'http://localhost:8000/'
+const serverURL = 'http://pltutorials8.xt:8080/api/v1/'
+
 var mixin = {
   async asyncData({ $axios, store, app }) {
     $axios
@@ -24,10 +27,10 @@ var mixin = {
       // baseurl: 'http://localhost:8000',
       serverErrors: [],
       get baseurl() {
-        return 'http://localhost:8000/'
+        return baseURL
       },
       get serverurl() {
-        return 'http://localhost:8000/api/v1/'
+        return serverURL
       },
     }
   },

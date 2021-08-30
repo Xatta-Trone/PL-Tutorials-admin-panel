@@ -1,4 +1,5 @@
-require('dotenv').config()
+const baseURL = 'http://localhost:8000/api/v1'
+const serverURL = 'http://pltutorials8.xt:8080/api/v1/admin/'
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -7,6 +8,9 @@ export default {
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
+  // generate: {
+  //   concurrency: 1,
+  // },
   head: {
     title: 'mazer-static-nuxt',
     htmlAttrs: {
@@ -127,7 +131,7 @@ export default {
     strategies: {
       laravelSanctum: {
         provider: 'laravel/sanctum',
-        url: 'http://localhost:8000/api/v1',
+        url: baseURL,
 
         endpoints: {
           login: { url: '/admin/login', method: 'post' },
@@ -155,12 +159,13 @@ export default {
     localStorage: false,
     resetOnError: true,
     rewriteRedirects: true,
+    // watchLoggedIn: true,
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     credentials: true,
-    baseURL: 'http://localhost:8000/api/v1/',
+    // baseURL: 'http://pltutorials8.xt:8080/api/v1/',
     requestInterceptor: (config, { store }) => {
       config.headers.common['access-token'] =
         store.state.user.headers.access_token
@@ -171,14 +176,19 @@ export default {
       return config
     },
     responseInterceptor: (res, ctx) => {},
+    proxy: true,
   },
 
-  // proxy: {
-  //   '/laravel': {
-  //     target: 'https://laravel-auth.nuxtjs.app',
-  //     pathRewrite: { '^/laravel': '/' },
-  //   },
-  // },
+  proxy: {
+    '/admin/': {
+      target: serverURL,
+      pathRewrite: { '^/admin/': '' },
+    },
+    // '/laravel': {
+    //   target: 'http://localhost:8080',
+    //   pathRewrite: { '^/laravel': '/' },
+    // },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
