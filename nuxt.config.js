@@ -98,6 +98,9 @@ export default {
     {
       src: '~/plugins/contentplaceholder.js',
     },
+    {
+      src: '~/plugins/quill.js',
+    },
 
     // {
     //   src: '~/plugins/perfect-scrollbar.js',
@@ -157,7 +160,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     credentials: true,
-    baseURL: 'http://pltutorials8.xt:8080/api/v1/',
+    baseURL: 'http://localhost:8000/api/v1/',
     requestInterceptor: (config, { store }) => {
       config.headers.common['access-token'] =
         store.state.user.headers.access_token

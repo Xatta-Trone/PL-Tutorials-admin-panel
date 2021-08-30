@@ -25,6 +25,7 @@
     "smooth-scrollbar": "^8.6.3",
     "vue-content-placeholders": "^0.2.1",
     "vue-gates": "^2.1.2",
+    "vue-quill-editor": "^3.0.6",
     "vue-tables-2": "^2.3.1",
     "vue-toastification": "^1.7.11",
     "vuebar": "^0.0.20",

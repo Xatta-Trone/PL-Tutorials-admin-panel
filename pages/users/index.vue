@@ -27,9 +27,7 @@
         </fieldset>
       </div>
       <v-server-table
-        :url="
-          'http://pltutorials8.xt:8080/api/v1/admin/users?type=' + selectData
-        "
+        :url="serverurl + 'admin/users?type=' + selectData"
         :columns="columns"
         :options="options"
       >

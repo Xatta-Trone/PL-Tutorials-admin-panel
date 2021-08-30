@@ -215,6 +215,7 @@ export default {
       this.serverErrors = []
 
       if (this.$v.$invalid) {
+        this.loading = false
         return this.$toast.error('Filup the required fields!!')
       }
       let vm = this

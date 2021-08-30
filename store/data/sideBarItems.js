@@ -16,10 +16,65 @@ export default [
     permission: 'dashboard',
   },
   {
-    name: 'Departments',
-    url: '/userdata',
+    name: 'Posts',
+    url: '/posts',
     icon: 'people-fill',
-    permission: 'dashboard',
+    permission: 'post_view',
+    submenu: [
+      {
+        name: 'List',
+        url: '/posts',
+        permission: 'post_show',
+      },
+      {
+        name: 'Add',
+        url: '/posts/add',
+        permission: 'post_create',
+      },
+    ],
+  },
+
+  {
+    name: 'Softwares',
+    url: '/softwares',
+    icon: 'people-fill',
+    permission: 'software_view',
+    submenu: [
+      {
+        name: 'List',
+        url: '/softwares',
+        permission: 'software_show',
+      },
+      {
+        name: 'Add',
+        url: '/softwares/add',
+        permission: 'software_create',
+      },
+    ],
+  },
+  {
+    name: 'Books',
+    url: '/books',
+    icon: 'people-fill',
+    permission: 'book_view',
+    submenu: [
+      {
+        name: 'List',
+        url: '/books',
+        permission: 'book_show',
+      },
+      {
+        name: 'Add',
+        url: '/books/add',
+        permission: 'book_create',
+      },
+    ],
+  },
+  {
+    name: 'Contacts',
+    url: '/contacts',
+    icon: 'grid-fill',
+    permission: 'contact_view',
   },
   {
     name: 'Users',

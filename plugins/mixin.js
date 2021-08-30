@@ -20,8 +20,15 @@ var mixin = {
   },
   data: function () {
     return {
-      serverurl: 'http://localhost:8080/api/v1/',
+      // serverurl: 'http://localhost:8000/api/v1/',
+      // baseurl: 'http://localhost:8000',
       serverErrors: [],
+      get baseurl() {
+        return 'http://localhost:8000/'
+      },
+      get serverurl() {
+        return 'http://localhost:8000/api/v1/'
+      },
     }
   },
   computed: {
@@ -91,6 +98,34 @@ var mixin = {
       this.serverErrors.forEach((e) => {
         return e[0] == key ? e[1].join(',') : null
       })
+    },
+
+    timeSince(date) {
+      console.log(date)
+      var seconds = Math.floor((new Date() - Date.parse(date)) / 1000)
+      // console.log(date, seconds)
+      var interval = seconds / 31536000
+
+      if (interval > 1) {
+        return Math.floor(interval) + ' years ago'
+      }
+      interval = seconds / 2592000
+      if (interval > 1) {
+        return Math.floor(interval) + ' months ago'
+      }
+      interval = seconds / 86400
+      if (interval > 1) {
+        return Math.floor(interval) + ' days ago'
+      }
+      interval = seconds / 3600
+      if (interval > 1) {
+        return Math.floor(interval) + ' hours ago'
+      }
+      interval = seconds / 60
+      if (interval > 1) {
+        return Math.floor(interval) + ' minutes ago'
+      }
+      return Math.floor(seconds) + ' seconds ago'
     },
 
     getmessage(statusmessage = '') {
@@ -175,6 +210,141 @@ var mixin = {
         case 'USER_PASSWORD_RESET':
           console.log('USER_PASSWORD_RESET')
           this.$toast.success('User password reset successfully.')
+          break
+
+        case 'POST_CREATED':
+          console.log('POST_CREATED')
+          this.$toast.success('Post created.')
+          break
+
+        case 'POST_CREATION_ERROR':
+          console.log('POST_CREATION_ERROR')
+          this.$toast.error('Post not created.')
+          break
+
+        case 'POST_NOT_FOUND':
+          console.log('POST_NOT_FOUND')
+          this.$toast.error('Post not found.')
+          break
+
+        case 'POST_FOUND':
+          console.log('POST_FOUND')
+          this.$toast.success('Post found.')
+          break
+
+        case 'POST_NOT_UPDATED':
+          console.log('POST_NOT_UPDATED')
+          this.$toast.error('Post not updated.')
+          break
+
+        case 'POST_UPDATED':
+          console.log('POST_UPDATED')
+          this.$toast.success('Post updated.')
+          break
+
+        case 'POST_NOT_DELETED':
+          console.log('POST_NOT_DELETED')
+          this.$toast.error('Post not deleted.')
+          break
+
+        case 'POST_DELETED':
+          console.log('POST_DELETED')
+          this.$toast.success('Post deleted.')
+          break
+
+        case 'POST_NOT_RESTORED':
+          console.log('POST_NOT_RESTORED')
+          this.$toast.error('Post not restored.')
+          break
+
+        case 'SOFTWARE_CREATED':
+          console.log('SOFTWARE_CREATED')
+          this.$toast.success('SOFTWARE created.')
+          break
+
+        case 'SOFTWARE_CREATION_ERROR':
+          console.log('SOFTWARE_CREATION_ERROR')
+          this.$toast.error('SOFTWARE not created.')
+          break
+
+        case 'SOFTWARE_NOT_FOUND':
+          console.log('SOFTWARE_NOT_FOUND')
+          this.$toast.error('SOFTWARE not found.')
+          break
+
+        case 'SOFTWARE_FOUND':
+          console.log('SOFTWARE_FOUND')
+          this.$toast.success('SOFTWARE found.')
+          break
+
+        case 'SOFTWARE_NOT_UPDATED':
+          console.log('SOFTWARE_NOT_UPDATED')
+          this.$toast.error('SOFTWARE not updated.')
+          break
+
+        case 'SOFTWARE_UPDATED':
+          console.log('SOFTWARE_UPDATED')
+          this.$toast.success('SOFTWARE updated.')
+          break
+
+        case 'SOFTWARE_NOT_DELETED':
+          console.log('SOFTWARE_NOT_DELETED')
+          this.$toast.error('SOFTWARE not deleted.')
+          break
+
+        case 'SOFTWARE_DELETED':
+          console.log('SOFTWARE_DELETED')
+          this.$toast.success('SOFTWARE deleted.')
+          break
+
+        case 'SOFTWARE_NOT_RESTORED':
+          console.log('SOFTWARE_NOT_RESTORED')
+          this.$toast.error('SOFTWARE not restored.')
+          break
+
+        case 'BOOK_CREATED':
+          console.log('BOOK_CREATED')
+          this.$toast.success('BOOK created.')
+          break
+
+        case 'BOOK_CREATION_ERROR':
+          console.log('BOOK_CREATION_ERROR')
+          this.$toast.error('BOOK not created.')
+          break
+
+        case 'BOOK_NOT_FOUND':
+          console.log('BOOK_NOT_FOUND')
+          this.$toast.error('BOOK not found.')
+          break
+
+        case 'BOOK_FOUND':
+          console.log('BOOK_FOUND')
+          this.$toast.success('BOOK found.')
+          break
+
+        case 'BOOK_NOT_UPDATED':
+          console.log('BOOK_NOT_UPDATED')
+          this.$toast.error('BOOK not updated.')
+          break
+
+        case 'BOOK_UPDATED':
+          console.log('BOOK_UPDATED')
+          this.$toast.success('BOOK updated.')
+          break
+
+        case 'BOOK_NOT_DELETED':
+          console.log('BOOK_NOT_DELETED')
+          this.$toast.error('BOOK not deleted.')
+          break
+
+        case 'BOOK_DELETED':
+          console.log('BOOK_DELETED')
+          this.$toast.success('BOOK deleted.')
+          break
+
+        case 'BOOK_NOT_RESTORED':
+          console.log('BOOK_NOT_RESTORED')
+          this.$toast.error('BOOK not restored.')
           break
 
         default:

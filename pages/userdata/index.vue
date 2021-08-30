@@ -3,7 +3,7 @@
   <div>
     <pageheader title="User data"></pageheader>
     <v-server-table
-      url="http://pltutorials8.xt:8080/api/v1/admin/userdatas/"
+      :url="serverurl + 'admin/userdatas/'"
       :columns="columns"
       :options="options"
     >
