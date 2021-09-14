@@ -220,7 +220,7 @@ export default {
       }
       let vm = this
       this.$axios
-        .post('admin/users/', this.form)
+        .post('admin/users', this.form)
         .then((res) => {
           vm.loading = false
           console.log(res)

@@ -331,13 +331,16 @@ export default {
       var bodyFormData = new FormData()
 
       for (const key in this.form) {
-        bodyFormData.append(key, this.form[key])
+        // console.log(this.form[key], this.form[key] === '')
+        if (this.form[key] !== '') {
+          bodyFormData.append(key, this.form[key])
+        }
       }
 
       console.log(bodyFormData)
 
       this.$axios
-        .post('admin/' + this.form.post_type + 's/', bodyFormData, {
+        .post('admin/' + this.form.post_type + 's', bodyFormData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -378,7 +381,7 @@ export default {
 
     getdepartments() {
       this.$axios
-        .get('/admin/getdepartments/')
+        .get('/admin/getdepartments')
         .then((res) => {
           console.log(res)
           if (res.data.hasOwnProperty('message')) {

@@ -1,7 +1,10 @@
 import Vue from 'vue'
 // import { AbilityBuilder } from '@casl/ability'
 
-const baseURL = 'http://localhost:8000/'
+// const baseURL = 'https://pl8.xattabyte.com/'
+// const serverURL = 'https://pl8.xattabyte.com/api/v1/'
+
+const baseURL = 'http://pltutorials8.xt:8080/'
 const serverURL = 'http://pltutorials8.xt:8080/api/v1/'
 
 var mixin = {

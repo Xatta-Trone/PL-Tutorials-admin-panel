@@ -112,7 +112,7 @@
                           }"
                           name="level_term_slug"
                         >
-                          <option value="">Select Level Term</option>
+                          <option value="" selected>Select Level Term</option>
                           <option
                             v-for="(levelterm, i) in levelterms"
                             :key="i"
@@ -129,13 +129,12 @@
                     <fieldset class="form-group">
                       <label for="basicSelect">Course (optional)</label>
                       <select
-                        @change="getcourses"
                         class="form-select"
                         id="Level Term"
-                        v-model.trim="form.course_id"
+                        v-model="form.course_id"
                         name="course_id"
                       >
-                        <option value="">Select Course</option>
+                        <option value="" selected>Select Course</option>
                         <option
                           v-for="(course, i) in courses"
                           :key="i"
@@ -428,7 +427,7 @@ export default {
     getdepartments() {
       this.loading = true
       this.$axios
-        .get('/admin/getdepartments/')
+        .get('/admin/getdepartments')
         .then((res) => {
           this.loading = false
           console.log(res)

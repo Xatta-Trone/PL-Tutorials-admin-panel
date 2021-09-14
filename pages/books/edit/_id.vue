@@ -414,7 +414,7 @@ export default {
     getdepartments() {
       this.loading = true
       this.$axios
-        .get('admin/getdepartments/')
+        .get('admin/getdepartments')
         .then((res) => {
           this.loading = false
           console.log(res)
@@ -479,7 +479,7 @@ export default {
       })
 
       this.$axios
-        .get('admin/getcourse/' + dept[0]['id'] + '/' + levelterm[0]['id'])
+        .get('/admin/getcourse/' + dept[0]['id'] + '/' + levelterm[0]['id'])
         .then((res) => {
           console.log(res)
           if (res.data.hasOwnProperty('message')) {

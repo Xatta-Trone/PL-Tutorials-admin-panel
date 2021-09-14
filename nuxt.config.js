@@ -1,16 +1,20 @@
+// const baseURL = 'https://pl8.xattabyte.com/api/v1'
+// const serverURL = 'https://pl8.xattabyte.com/api/v1/'
+
 const baseURL = 'http://localhost:8000/api/v1'
-const serverURL = 'http://pltutorials8.xt:8080/api/v1/admin/'
+const serverURL = 'http://pltutorials8.xt:8080/api/v1/'
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  // mode: 'universal',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
-  // generate: {
-  //   concurrency: 1,
-  // },
+  generate: {
+    concurrency: 1,
+  },
   head: {
     title: 'mazer-static-nuxt',
     htmlAttrs: {
@@ -123,6 +127,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     'nuxt-lazy-load',
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/auth-next',
     '@nuxtjs/dotenv',
   ],
@@ -159,13 +164,13 @@ export default {
     localStorage: false,
     resetOnError: true,
     rewriteRedirects: true,
-    // watchLoggedIn: true,
+    watchLoggedIn: true,
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     credentials: true,
-    // baseURL: 'http://pltutorials8.xt:8080/api/v1/',
+    baseURL: serverURL,
     requestInterceptor: (config, { store }) => {
       config.headers.common['access-token'] =
         store.state.user.headers.access_token
@@ -173,22 +178,26 @@ export default {
       config.headers.common['client'] = store.state.user.headers.client
       config.headers.common['expiry'] = store.state.user.headers.expiry
       config.headers.common['uid'] = store.state.user.headers.uid
+      config.headers.common['Access-Control-Allow-Origin'] = '*'
+
       return config
     },
     responseInterceptor: (res, ctx) => {},
-    proxy: true,
+    // proxy: true,
+    // prefix: '/admin/',
   },
 
-  proxy: {
-    '/admin/': {
-      target: serverURL,
-      pathRewrite: { '^/admin/': '' },
-    },
-    // '/laravel': {
-    //   target: 'http://localhost:8080',
-    //   pathRewrite: { '^/laravel': '/' },
-    // },
-  },
+  // proxy: {
+  //   '/admin/': {
+  //     target: serverURL,
+  //     pathRewrite: { '^/admin/': '' },
+  //     changeOrigin: true,
+  //   },
+  //   // '/laravel': {
+  //   //   target: 'http://localhost:8080',
+  //   //   pathRewrite: { '^/laravel': '/' },
+  //   // },
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

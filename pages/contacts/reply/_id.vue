@@ -29,42 +29,8 @@
           </div>
         </div>
 
-        <section id="list-group-icons" v-if="form.replies.length > 0">
-          <div class="row match-height">
-            <div class="col-lg-12 col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Replies</h4>
-                </div>
-                <div class="card-content">
-                  <div class="card-body">
-                    <div class="list-group">
-                      <div
-                        href="#"
-                        class="list-group-item list-group-item-action active"
-                        v-for="reply in form.replies"
-                        :key="reply.id"
-                      >
-                        <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1 text-white">
-                            {{ reply.subject }}
-                          </h5>
-                          <small>{{ timeSince(reply.created_at) }}</small>
-                        </div>
-                        <p class="mb-1" v-html="reply.body">
 
-                        </p>
-                        <small>{{ reply.repliedby.name }}</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div class="card">
+          <div class="card">
           <div class="card-content">
             <form class="form form-vertical">
               <div class="form-body">
@@ -202,6 +168,43 @@
             </form>
           </div>
         </div>
+
+        <section id="list-group-icons" v-if="form.replies.length > 0">
+          <div class="row match-height">
+            <div class="col-lg-12 col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Replies</h4>
+                </div>
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="list-group">
+                      <div
+                        href="#"
+                        class="list-group-item list-group-item-action active my-2"
+                        v-for="reply in form.replies"
+                        :key="reply.id"
+                      >
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1 text-white">
+                            {{ reply.subject }}
+                          </h5>
+                          <small>{{ timeSince(reply.created_at) }}</small>
+                        </div>
+                        <p class="mb-1" v-html="reply.body">
+
+                        </p>
+                        <small>{{ reply.repliedby.name }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
       </div>
     </div>
   </div>
@@ -269,7 +272,8 @@ export default {
         .then(() => {
           this.new_reply.contact_id = this.form.id
           this.new_reply.mailto = this.form.email
-          this.new_reply.subject = 'Re: ' + this.form.subject
+          this.new_reply.subject =
+            this.form.subject != null ? 'Re: ' + this.form.subject : 'Response'
         })
         .catch((err) => {
           vm.loading = false

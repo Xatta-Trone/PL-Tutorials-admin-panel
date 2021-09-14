@@ -3,7 +3,7 @@
   <div>
     <pageheader title="User data"></pageheader>
     <v-server-table
-      :url="serverurl + 'admin/userdatas/'"
+      :url="serverurl + 'admin/userdatas'"
       :columns="columns"
       :options="options"
     >
