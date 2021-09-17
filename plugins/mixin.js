@@ -134,16 +134,61 @@ var mixin = {
       return Math.floor(seconds) + ' seconds ago'
     },
 
+    extractmessage(statusmessage = '') {
+      // input the exception messages here and include in the getmessagecustom function
+      let exceptions = [
+        'INVALID_EMAIL_PASSWORD',
+        'SOMETHING_WENT_WRONG',
+        'LOGGED_OUT',
+        'USER_ALREADY_REGISTERED',
+        'AUTH_SUCCESS',
+      ]
+
+      if (exceptions.includes(statusmessage)) {
+        return this.getmessagecustom(statusmessage)
+      }
+
+      if (statusmessage.indexOf(' ') >= 0) {
+        console.log('Something went wrong')
+        return this.$toast.error('Something went wrong!!!' + statusmessage + '')
+      }
+
+      // split the strings
+      let strings = statusmessage.split('_').map((e) => e.toLowerCase())
+
+      if (strings.includes('not') || strings.includes('error')) {
+        return this.errormessage(strings.join(' '))
+      } else {
+        return this.successmessage(strings.join(' '))
+      }
+    },
+
+    successmessage(msg) {
+      console.log('msg')
+      return this.$toast.success(msg)
+    },
+
+    errormessage(msg) {
+      console.log('msg')
+      return this.$toast.error(msg)
+    },
+
+    infomessage(msg) {
+      console.log('msg')
+      return this.$toast.info(msg)
+    },
+
     getmessage(statusmessage = '') {
+      this.extractmessage(statusmessage)
+    },
+
+    getmessagecustom(statusmessage = '') {
       switch (statusmessage) {
         case 'INVALID_EMAIL_PASSWORD':
           console.log('INVALID_EMAIL_PASSWORD')
           this.$toast.error('Invalid Email or password')
           break
-        case 'ACCOUNT_NOT_ACTIVE':
-          console.log('ACCOUNT_NOT_ACTIVE')
-          this.$toast.error('Account not active')
-          break
+
         case 'AUTH_SUCCESS':
           console.log('AUTH_SUCCESS')
           this.$toast.success('Login successful. Redirecting....')
@@ -153,204 +198,13 @@ var mixin = {
           this.$toast.error('Something went wrong!!!')
           break
 
+        case 'LOGGED_OUT':
+          console.log('LOGGED_OUT')
+          this.$toast.success('Logged out')
+          break
         case 'USER_ALREADY_REGISTERED':
           console.log('USER_ALREADY_REGISTERED')
           this.$toast.error('User has already been registered.')
-          break
-
-        case 'USER_CREATED':
-          console.log('USER_CREATED')
-          this.$toast.success('User created.')
-          break
-
-        case 'USER_CREATION_ERROR':
-          console.log('USER_CREATION_ERROR')
-          this.$toast.error('User not created.')
-          break
-
-        case 'USER_NOT_FOUND':
-          console.log('USER_NOT_FOUND')
-          this.$toast.error('User not found.')
-          break
-
-        case 'USER_FOUND':
-          console.log('USER_FOUND')
-          this.$toast.success('User found.')
-          break
-
-        case 'USER_NOT_UPDATED':
-          console.log('USER_NOT_UPDATED')
-          this.$toast.error('User not updated.')
-          break
-
-        case 'USER_UPDATED':
-          console.log('USER_UPDATED')
-          this.$toast.success('User updated.')
-          break
-
-        case 'USER_NOT_DELETED':
-          console.log('USER_NOT_DELETED')
-          this.$toast.error('User not deleted.')
-          break
-
-        case 'USER_DELETED':
-          console.log('USER_DELETED')
-          this.$toast.success('User deleted.')
-          break
-
-        case 'USER_NOT_RESTORED':
-          console.log('USER_NOT_RESTORED')
-          this.$toast.error('User not restored.')
-          break
-
-        case 'USER_RESTORED':
-          console.log('USER_RESTORED')
-          this.$toast.success('User restored.')
-          break
-
-        case 'USER_NOT_PASSWORD_RESET':
-          console.log('USER_NOT_PASSWORD_RESET')
-          this.$toast.error('User password not reset.')
-          break
-
-        case 'USER_PASSWORD_RESET':
-          console.log('USER_PASSWORD_RESET')
-          this.$toast.success('User password reset successfully.')
-          break
-
-        case 'POST_CREATED':
-          console.log('POST_CREATED')
-          this.$toast.success('Post created.')
-          break
-
-        case 'POST_CREATION_ERROR':
-          console.log('POST_CREATION_ERROR')
-          this.$toast.error('Post not created.')
-          break
-
-        case 'POST_NOT_FOUND':
-          console.log('POST_NOT_FOUND')
-          this.$toast.error('Post not found.')
-          break
-
-        case 'POST_FOUND':
-          console.log('POST_FOUND')
-          this.$toast.success('Post found.')
-          break
-
-        case 'POST_NOT_UPDATED':
-          console.log('POST_NOT_UPDATED')
-          this.$toast.error('Post not updated.')
-          break
-
-        case 'POST_UPDATED':
-          console.log('POST_UPDATED')
-          this.$toast.success('Post updated.')
-          break
-
-        case 'POST_NOT_DELETED':
-          console.log('POST_NOT_DELETED')
-          this.$toast.error('Post not deleted.')
-          break
-
-        case 'POST_DELETED':
-          console.log('POST_DELETED')
-          this.$toast.success('Post deleted.')
-          break
-
-        case 'POST_NOT_RESTORED':
-          console.log('POST_NOT_RESTORED')
-          this.$toast.error('Post not restored.')
-          break
-
-        case 'SOFTWARE_CREATED':
-          console.log('SOFTWARE_CREATED')
-          this.$toast.success('SOFTWARE created.')
-          break
-
-        case 'SOFTWARE_CREATION_ERROR':
-          console.log('SOFTWARE_CREATION_ERROR')
-          this.$toast.error('SOFTWARE not created.')
-          break
-
-        case 'SOFTWARE_NOT_FOUND':
-          console.log('SOFTWARE_NOT_FOUND')
-          this.$toast.error('SOFTWARE not found.')
-          break
-
-        case 'SOFTWARE_FOUND':
-          console.log('SOFTWARE_FOUND')
-          this.$toast.success('SOFTWARE found.')
-          break
-
-        case 'SOFTWARE_NOT_UPDATED':
-          console.log('SOFTWARE_NOT_UPDATED')
-          this.$toast.error('SOFTWARE not updated.')
-          break
-
-        case 'SOFTWARE_UPDATED':
-          console.log('SOFTWARE_UPDATED')
-          this.$toast.success('SOFTWARE updated.')
-          break
-
-        case 'SOFTWARE_NOT_DELETED':
-          console.log('SOFTWARE_NOT_DELETED')
-          this.$toast.error('SOFTWARE not deleted.')
-          break
-
-        case 'SOFTWARE_DELETED':
-          console.log('SOFTWARE_DELETED')
-          this.$toast.success('SOFTWARE deleted.')
-          break
-
-        case 'SOFTWARE_NOT_RESTORED':
-          console.log('SOFTWARE_NOT_RESTORED')
-          this.$toast.error('SOFTWARE not restored.')
-          break
-
-        case 'BOOK_CREATED':
-          console.log('BOOK_CREATED')
-          this.$toast.success('BOOK created.')
-          break
-
-        case 'BOOK_CREATION_ERROR':
-          console.log('BOOK_CREATION_ERROR')
-          this.$toast.error('BOOK not created.')
-          break
-
-        case 'BOOK_NOT_FOUND':
-          console.log('BOOK_NOT_FOUND')
-          this.$toast.error('BOOK not found.')
-          break
-
-        case 'BOOK_FOUND':
-          console.log('BOOK_FOUND')
-          this.$toast.success('BOOK found.')
-          break
-
-        case 'BOOK_NOT_UPDATED':
-          console.log('BOOK_NOT_UPDATED')
-          this.$toast.error('BOOK not updated.')
-          break
-
-        case 'BOOK_UPDATED':
-          console.log('BOOK_UPDATED')
-          this.$toast.success('BOOK updated.')
-          break
-
-        case 'BOOK_NOT_DELETED':
-          console.log('BOOK_NOT_DELETED')
-          this.$toast.error('BOOK not deleted.')
-          break
-
-        case 'BOOK_DELETED':
-          console.log('BOOK_DELETED')
-          this.$toast.success('BOOK deleted.')
-          break
-
-        case 'BOOK_NOT_RESTORED':
-          console.log('BOOK_NOT_RESTORED')
-          this.$toast.error('BOOK not restored.')
           break
 
         default:

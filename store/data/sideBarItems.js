@@ -77,6 +77,18 @@ export default [
     permission: 'contact_view',
   },
   {
+    name: 'Settings',
+    url: '/settings',
+    icon: 'grid-fill',
+    permission: 'utilities_show',
+  },
+  {
+    name: 'Testimonials',
+    url: '/testimonials',
+    icon: 'grid-fill',
+    permission: 'testimonial_show',
+  },
+  {
     name: 'Users',
     url: '/users',
     icon: 'person-fill',
