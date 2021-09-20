@@ -70,6 +70,17 @@
               class="text-danger"
               :icon="['far', 'trash-alt']"
           /></a>
+
+          <a
+            v-show="$can('user_view')"
+            href=""
+            title="User Detail"
+            @click.prevent="userdetail(row)"
+            ><font-awesome-icon
+              class="text-danger"
+              :icon="['fas', 'info-circle']"
+          /></a>
+
           <a
             v-show="$can('user_password')"
             v-if="row.deleted_at == null"
@@ -132,6 +143,11 @@ export default {
       // this.$router.push({
       //   path: '/users/edit/' + data.id,
       // })
+    },
+
+    userdetail(data) {
+      console.log(data)
+      this.$nuxt.$router.push('/users/detail/' + data.id)
     },
 
     userdelete(data, i) {

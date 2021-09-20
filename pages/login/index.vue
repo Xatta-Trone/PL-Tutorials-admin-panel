@@ -57,8 +57,12 @@ export default {
       login: {
         email: 'monzurul.ce.buet@gmail.com',
         password: '123456',
+        visitorid: '',
       },
     }
+  },
+  mounted() {
+    this.visitorId()
   },
   methods: {
     async userLogin() {
@@ -87,6 +91,10 @@ export default {
           this.getmessage('Something went wrong')
         }
       }
+    },
+    visitorId() {
+      // console.log(fingerprint.visitorId)
+      this.visitorid = fingerprint.visitorId
     },
   },
 }

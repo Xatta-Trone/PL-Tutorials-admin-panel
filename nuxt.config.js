@@ -44,6 +44,11 @@ export default {
 
       {
         rel: 'stylesheet',
+        href: '/assets/vendors/iconly/bold.css',
+      },
+
+      {
+        rel: 'stylesheet',
         href: '/assets/css/app.css',
       },
       {
@@ -108,6 +113,13 @@ export default {
     },
     {
       src: '~/plugins/quill.js',
+    },
+    {
+      src: '~/plugins/fingerprint.js',
+    },
+
+    {
+      src: '~/plugins/apexchart.js',
     },
 
     // {

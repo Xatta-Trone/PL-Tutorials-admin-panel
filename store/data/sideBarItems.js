@@ -88,6 +88,27 @@ export default [
     icon: 'grid-fill',
     permission: 'testimonial_show',
   },
+
+  {
+    name: 'Faq',
+    url: '/faqs',
+    icon: 'grid-fill',
+    permission: 'faq_show',
+  },
+
+  {
+    name: 'Activities',
+    url: '/activities',
+    icon: 'grid-fill',
+    permission: 'user_show',
+  },
+
+  {
+    name: 'UserTrace',
+    url: '/usertraces',
+    icon: 'grid-fill',
+    permission: 'user_show',
+  },
   {
     name: 'Users',
     url: '/users',
