@@ -1,7 +1,11 @@
 
 <template>
   <div>
-    <pageheader title="User data"></pageheader>
+    <pageheader
+      title="User data"
+      :urlto="this.$nuxt.$route.fullPath + '/import'"
+      urltxt="Import data"
+    ></pageheader>
     <v-server-table
       :url="serverurl + 'admin/userdatas'"
       :columns="columns"

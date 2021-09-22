@@ -36,6 +36,15 @@
               {{ btntxt }}
             </button>
           </form>
+          <div class="text-center mt-5 text-lg fs-4">
+            <p class="text-gray-600">
+              Don't remember your password ?
+
+              <router-link class="font-bold" to="/auth/forgot-password"
+                >Reset password</router-link
+              >
+            </p>
+          </div>
         </div>
       </div>
       <div class="col-lg-7 d-none d-lg-block">
@@ -56,13 +65,13 @@ export default {
       btntxt: 'Log in',
       login: {
         email: 'monzurul.ce.buet@gmail.com',
-        password: '123456',
+        password: '12345678',
         visitorid: '',
       },
     }
   },
   mounted() {
-    this.visitorId()
+    // this.visitorId()
   },
   methods: {
     async userLogin() {
@@ -94,7 +103,9 @@ export default {
     },
     visitorId() {
       // console.log(fingerprint.visitorId)
-      this.visitorid = fingerprint.visitorId
+      if (fingerprint != undefined) {
+        this.visitorid = fingerprint.visitorId
+      }
     },
   },
 }

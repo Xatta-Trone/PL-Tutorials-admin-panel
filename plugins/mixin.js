@@ -142,6 +142,8 @@ var mixin = {
         'LOGGED_OUT',
         'USER_ALREADY_REGISTERED',
         'AUTH_SUCCESS',
+        'DUPLICATR_STUDENT_ID',
+        'TOKEN_EXPIRED',
       ]
 
       if (exceptions.includes(statusmessage)) {
@@ -205,6 +207,15 @@ var mixin = {
         case 'USER_ALREADY_REGISTERED':
           console.log('USER_ALREADY_REGISTERED')
           this.$toast.error('User has already been registered.')
+          break
+        case 'TOKEN_EXPIRED':
+          console.log('TOKEN_EXPIRED')
+          this.$toast.error('Token has expired.')
+          break
+
+        case 'DUPLICATR_STUDENT_ID':
+          console.log('DUPLICATR_STUDENT_ID')
+          this.$toast.error('Student id already registered.')
           break
 
         default:

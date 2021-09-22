@@ -16,6 +16,8 @@ Vue.use(vuelidateErrorExtractor, {
     email: 'Please enter a valid email address',
     integer: 'Please enter a valid integer',
     maxLength: 'The {attribute} must be {max} characters',
+    minLength: 'The {attribute} must be minimum {min} characters',
+    sameAsPassword: '{attribute} must be identical',
     url: 'The {attribute} must be a valid url',
   }, // error messages to use
   attributes: {

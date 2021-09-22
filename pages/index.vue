@@ -13,45 +13,8 @@
           <div class="card-body px-3 py-4-5">
             <div class="row">
               <div class="col-md-4">
-                <div class="stats-icon purple">
-                  <i class="iconly-boldActivity"></i>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Activities</h6>
-                <h6 class="font-extrabold mb-0">
-                  {{ dashboard.total_activities }}
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-3 col-md-6">
-        <div class="card">
-          <div class="card-body px-3 py-4-5">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Total Users</h6>
-                <h6 class="font-extrabold mb-0">{{ dashboard.users_total }}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-6 col-lg-3 col-md-6">
-        <div class="card">
-          <div class="card-body px-3 py-4-5">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
+                <div class="stats-icon green">
+                  <i class="iconly-boldDiscount"></i>
                 </div>
               </div>
               <div class="col-md-8">
@@ -68,8 +31,68 @@
           <div class="card-body px-3 py-4-5">
             <div class="row">
               <div class="col-md-4">
-                <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
+                <div class="stats-icon red">
+                  <i class="iconly-boldProfile"></i>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h6 class="text-muted font-semibold">New user today</h6>
+                <h6 class="font-extrabold mb-0">
+                  {{ dashboard.new_user_today }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="stats-icon red">
+                  <i class="iconly-boldProfile"></i>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h6 class="text-muted font-semibold">New user week</h6>
+                <h6 class="font-extrabold mb-0">
+                  {{ dashboard.new_user_thisweek }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="stats-icon purple">
+                  <i class="iconly-boldActivity"></i>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h6 class="text-muted font-semibold">Activities</h6>
+                <h6 class="font-extrabold mb-0">
+                  {{ dashboard.total_activities }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="stats-icon red">
+                  <i class="iconly-boldProfile"></i>
                 </div>
               </div>
               <div class="col-md-8">
@@ -93,7 +116,25 @@
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Total downloads</h6>
+                <h6 class="text-muted font-semibold">Users</h6>
+                <h6 class="font-extrabold mb-0">{{ dashboard.users_total }}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="stats-icon red">
+                  <i class="iconly-boldPaper-Download"></i>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h6 class="text-muted font-semibold">Downloads</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.total_downloads }}
                 </h6>
@@ -109,11 +150,11 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
+                  <i class="iconly-boldWork"></i>
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Total userdata</h6>
+                <h6 class="text-muted font-semibold">Userdata</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.total_userdatas }}
                 </h6>
@@ -128,12 +169,12 @@
           <div class="card-body px-3 py-4-5">
             <div class="row">
               <div class="col-md-4">
-                <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
+                <div class="stats-icon green">
+                  <i class="iconly-boldScan"></i>
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Total software</h6>
+                <h6 class="text-muted font-semibold">Softwares</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.total_softwares }}
                 </h6>
@@ -148,12 +189,12 @@
           <div class="card-body px-3 py-4-5">
             <div class="row">
               <div class="col-md-4">
-                <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
+                <div class="stats-icon purple">
+                  <i class="iconly-boldInfo-Square"></i>
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Total books</h6>
+                <h6 class="text-muted font-semibold">Books</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.total_books }}
                 </h6>
@@ -169,11 +210,11 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
+                  <i class="iconly-boldBookmark"></i>
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Total posts</h6>
+                <h6 class="text-muted font-semibold">Posts</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.total_posts }}
                 </h6>
@@ -188,12 +229,12 @@
           <div class="card-body px-3 py-4-5">
             <div class="row">
               <div class="col-md-4">
-                <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
+                <div class="stats-icon green">
+                  <i class="iconly-boldMessage"></i>
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Total testimonials</h6>
+                <h6 class="text-muted font-semibold">Testimonials</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.total_testimonial }}
                 </h6>
@@ -208,12 +249,12 @@
           <div class="card-body px-3 py-4-5">
             <div class="row">
               <div class="col-md-4">
-                <div class="stats-icon blue">
-                  <i class="iconly-boldUser"></i>
+                <div class="stats-icon red">
+                  <i class="iconly-boldPaper-Fail"></i>
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Total faqs</h6>
+                <h6 class="text-muted font-semibold">Faqs</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.total_faq }}
                 </h6>
@@ -235,6 +276,18 @@
         :series="activity.series"
       ></apexchart>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <apexchart
+          ref="piechart"
+          width="100%"
+          height="300"
+          type="pie"
+          :options="deptbachDataChart.options"
+          :series="deptbachDataChart.series"
+        ></apexchart>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -242,11 +295,16 @@
 export default {
   middleware: 'auth',
   layout: 'app',
+  head: {
+    title: 'Dashboard',
+    meta: [],
+  },
   data() {
     return {
       loading: false,
       dashboard: {},
       chartData: [],
+      deptBatchData: [],
       activity: {
         options: {
           chart: {
@@ -262,6 +320,31 @@ export default {
         },
         series: [],
       },
+      deptbachDataChart: {
+        options: {
+          chart: {
+            id: 'vuechart-pie',
+          },
+          labels: [],
+          responsive: [
+            {
+              breakpoint: 480,
+              options: {
+                chart: {
+                  width: 200,
+                },
+                legend: {
+                  position: 'bottom',
+                },
+              },
+            },
+          ],
+          noData: {
+            text: 'Loading...',
+          },
+        },
+        series: [],
+      },
     }
   },
   mounted() {
@@ -269,6 +352,7 @@ export default {
     // this.$nextTick(() => window.location.reload())
     this.getData()
     this.getChartData()
+    this.getDeptBatchData()
   },
   methods: {
     async logout() {
@@ -323,6 +407,33 @@ export default {
           }
 
           vm.$refs.realtimeChart.updateSeries(res.data['data'])
+        })
+        .catch((err) => {
+          console.log('Errrr', err)
+          if (err.response.data.hasOwnProperty('message')) {
+            this.getmessage(err.response.data.message)
+          } else {
+            this.getmessage('')
+          }
+        })
+    },
+
+    getDeptBatchData() {
+      let vm = this
+      vm.$axios
+        .get('admin/dashboard/deptbatchdatapie')
+        .then((res) => {
+          console.log(res.data)
+          vm.deptBatchData = res.data
+
+          vm.deptbachDataChart.options = {
+            ...vm.deptbachDataChart.options,
+
+            labels: res.data['labels'],
+            series: res.data['data'],
+          }
+
+          // vm.$refs.realtimeChart.updateSeries(res.data['data'])
         })
         .catch((err) => {
           console.log('Errrr', err)

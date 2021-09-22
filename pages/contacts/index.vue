@@ -6,11 +6,7 @@
       <content-placeholders-text :lines="3" />
     </content-placeholders>
     <div v-else>
-      <pageheader
-        title="Contacts"
-        :urlto="this.$nuxt.$route.fullPath + '/add'"
-        urltxt=""
-      ></pageheader>
+      <pageheader title="Contacts"></pageheader>
 
       <div class="col-12"></div>
       <v-server-table
