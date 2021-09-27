@@ -127,4 +127,11 @@ export default [
     //   },
     // ],
   },
+
+  {
+    name: 'Admins',
+    url: '/admins',
+    icon: 'person-fill',
+    permission: 'admin_show',
+  },
 ]

@@ -144,6 +144,7 @@ var mixin = {
         'AUTH_SUCCESS',
         'DUPLICATR_STUDENT_ID',
         'TOKEN_EXPIRED',
+        'ADMIN_MUST_HAVE_USER_ACCOUNT',
       ]
 
       if (exceptions.includes(statusmessage)) {
@@ -216,6 +217,11 @@ var mixin = {
         case 'DUPLICATR_STUDENT_ID':
           console.log('DUPLICATR_STUDENT_ID')
           this.$toast.error('Student id already registered.')
+          break
+
+        case 'ADMIN_MUST_HAVE_USER_ACCOUNT':
+          console.log('ADMIN_MUST_HAVE_USER_ACCOUNT')
+          this.$toast.error('Admin must have user account first')
           break
 
         default:
