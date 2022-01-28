@@ -35,9 +35,11 @@ export default {
       columns: [
         'id',
         'user_name',
+        'user_student_id',
         'user_ip',
         'device',
         'location',
+        'created_at',
         'fingerprint',
       ],
       options: {
@@ -45,7 +47,11 @@ export default {
         perPageValues: [5, 10, 15, 25, 50, 100],
         pagination: { chunk: 5 },
         orderBy: { ascending: false },
-        headings: {},
+        headings: {
+          user_student_id: 'Student ID',
+          user_name: 'Name',
+          user_ip: 'IP',
+        },
         requestFunction(data) {
           let vm = this
           return this.$axios

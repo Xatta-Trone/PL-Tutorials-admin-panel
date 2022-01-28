@@ -10,10 +10,70 @@ export default [
     permission: 'dashboard',
   },
   {
+    name: 'Bans Log',
+    url: '/banhistory',
+    icon: 'grid-fill',
+    // permission: 'dashboard',
+  },
+  {
+    name: 'Chats',
+    url: '/chats',
+    icon: 'grid-fill',
+    // permission: 'dashboard',
+  },
+  {
+    name: 'Bans',
+    url: '/bans',
+    icon: 'grid-fill',
+    permission: 'ban_view',
+  },
+
+  {
+    name: 'Ban Days',
+    url: '/bandays',
+    icon: 'grid-fill',
+    permission: 'ban_view',
+  },
+  {
     name: 'User Data',
     url: '/userdata',
     icon: 'people-fill',
     permission: 'dashboard',
+  },
+
+  {
+    name: 'Permissions',
+    url: '/permissions',
+    icon: 'people-fill',
+    permission: 'permission_view',
+  },
+
+  {
+    name: 'Roles',
+    url: '/roles',
+    icon: 'people-fill',
+    permission: 'role_view',
+  },
+
+  {
+    name: 'Departments',
+    url: '/departments',
+    icon: 'people-fill',
+    permission: 'department_view',
+  },
+
+  {
+    name: 'Level Term',
+    url: '/levelterms',
+    icon: 'people-fill',
+    permission: 'level_term_view',
+  },
+
+  {
+    name: 'Courses',
+    url: '/courses',
+    icon: 'people-fill',
+    permission: 'course_view',
   },
   {
     name: 'Posts',

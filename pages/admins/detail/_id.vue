@@ -37,7 +37,7 @@
                     <span class="badge bg-danger badge-pill ml-1"
                       >Account Active</span
                     >
-                    {{ form.whitelisted == 0 ? 'No' : 'Yes' }}
+                    {{ form.status == 0 ? 'No' : 'Yes' }}
                   </li>
 
                   <li class="list-group-item">
@@ -169,9 +169,9 @@ export default {
         '-' +
         y +
         ' ' +
-        hours +
+        hours.toString().padStart(2, '0') +
         ':' +
-        minutes +
+        minutes.toString().padStart(2, '0') +
         ' ' +
         ampm
       )

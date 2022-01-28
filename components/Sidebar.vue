@@ -26,6 +26,20 @@
               <span class="avatar-content">{{ $auth.user.user_letter }}</span>
             </div>
             {{ $auth.user.name }}
+            <div class="text-center">
+              <div
+                class="btn-group mx-auto btn-group-sm mt-3"
+                role="group"
+                aria-label="Basic example"
+              >
+                <nuxt-link class="btn btn-primary" to="profile"
+                  >Profile</nuxt-link
+                >
+                <button type="button" @click="logout" class="btn btn-danger">
+                  Logout
+                </button>
+              </div>
+            </div>
           </li>
           <template v-for="item in $store.state.sideBarItems">
             <li class="sidebar-title" v-if="item.isTitle" :key="item.key">
@@ -209,6 +223,15 @@ export default {
     // console.log(a)
   },
   methods: {
+    async logout() {
+      try {
+        let response = await this.$auth.logout('laravelSanctum')
+        console.log(response)
+        this.$gates.setPermissions([])
+      } catch (err) {
+        console.log('err', err)
+      }
+    },
     subIsActive(item) {
       const paths = Array.isArray(item.submenu) ? item.submenu : []
       return paths.some((path) => {

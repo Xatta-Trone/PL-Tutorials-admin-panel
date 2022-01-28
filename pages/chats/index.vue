@@ -6,15 +6,24 @@
       <content-placeholders-text :lines="3" />
     </content-placeholders>
     <div v-else>
-      <pageheader
-        title="Admin"
-        :urlto="this.$nuxt.$route.fullPath + '/add'"
-        urltxt="Add Admin"
-      ></pageheader>
+      <pageheader title="Select a user ot chat with"></pageheader>
 
-
+      <div class="col-12">
+        <fieldset class="form-group">
+          <label for="basicSelect">Select data</label>
+          <select
+            class="form-select"
+            id="basicSelect"
+            v-model="selectData"
+            name="basicSelect"
+          >
+            <option value="all">All Users</option>
+            <option value="deleted">Deleted Users</option>
+          </select>
+        </fieldset>
+      </div>
       <v-server-table
-        :url="serverurl + 'admin/admins?type=' + selectData"
+        :url="serverurl + 'admin/users?type=' + selectData"
         :columns="columns"
         :options="options"
       >
@@ -35,26 +44,25 @@
             >Deleted</span
           >
         </div>
-
-        <div slot="roles" slot-scope="{ row }">
-          <span v-text="row.roles.map((a) => a.name).join(',')"></span>
-        </div>
-
         <div
           slot="actions"
           slot-scope="{ row }"
           class="d-flex justify-content-around"
         >
           <a
-            v-show="$can('admin_update')"
+            v-show="$can('user_update')"
             href=""
             @click.prevent="edit(row)"
             title="User Edit"
             ><font-awesome-icon :icon="['far', 'edit']"
           /></a>
 
+          <a href="" @click.prevent="chat(row)" title="Chat"
+            ><font-awesome-icon :icon="['far', 'comment-dots']"
+          /></a>
+
           <a
-            v-show="$can('admin_delete')"
+            v-show="$can('user_delete')"
             href=""
             title="User Delete"
             @click.prevent="userdelete(row, i)"
@@ -64,7 +72,7 @@
           /></a>
 
           <a
-            v-show="$can('admin_view')"
+            v-show="$can('user_view')"
             href=""
             title="User Detail"
             @click.prevent="userdetail(row)"
@@ -74,8 +82,16 @@
           /></a>
 
           <a
+            v-show="$can('user_password')"
+            v-if="row.deleted_at == null"
+            href=""
+            title="Reset Password"
+            @click.prevent="userresetpass(row)"
+            ><font-awesome-icon class="text-danger" :icon="['fas', 'key']"
+          /></a>
+          <a
             v-if="row.deleted_at != null"
-            v-show="$can('admin_update')"
+            v-show="$can('user_update')"
             href=""
             title="User Delete"
             @click.prevent="userrestore(row)"
@@ -98,15 +114,7 @@ export default {
       loading: false,
       error: false,
       selectData: 'all',
-      columns: [
-        'id',
-        'name',
-        'email',
-        'student_id',
-        'status',
-        'roles',
-        'actions',
-      ],
+      columns: ['id', 'name', 'email', 'student_id', 'status', 'actions'],
       options: {
         perPage: 10,
         perPageValues: [5, 10, 15, 25, 50, 100],
@@ -131,15 +139,23 @@ export default {
   methods: {
     edit(data) {
       console.log(data)
-      this.$nuxt.$router.push('/admins/edit/' + data.id)
+      this.$nuxt.$router.push('/users/edit/' + data.id)
       // this.$router.push({
-      //   path: '/admins/edit/' + data.id,
+      //   path: '/users/edit/' + data.id,
+      // })
+    },
+
+    chat(data) {
+      console.log(data)
+      this.$nuxt.$router.push('/chats/user/' + data.id)
+      // this.$router.push({
+      //   path: '/users/edit/' + data.id,
       // })
     },
 
     userdetail(data) {
       console.log(data)
-      this.$nuxt.$router.push('/admins/detail/' + data.id)
+      this.$nuxt.$router.push('/users/detail/' + data.id)
     },
 
     userdelete(data, i) {
@@ -157,10 +173,7 @@ export default {
         let forcedelete = data.deleted_at != null
         this.$axios
           .delete(
-            '/admin/admins/' +
-              data.id +
-              '?forcedelete=' +
-              forcedelete.toString()
+            '/admin/users/' + data.id + '?forcedelete=' + forcedelete.toString()
           )
           .then((res) => {
             vm.loading = false
@@ -189,7 +202,7 @@ export default {
         vm.loading = true
 
         this.$axios
-          .get('admin/admins/restore/' + data.id)
+          .get('admin/users/restore/' + data.id)
           .then((res) => {
             vm.loading = false
             this.selectData = 'all'
@@ -219,7 +232,7 @@ export default {
         vm.loading = true
 
         this.$axios
-          .get('admin/admins/resetpass/' + data.id)
+          .get('admin/users/resetpass/' + data.id)
           .then((res) => {
             vm.loading = false
 

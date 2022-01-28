@@ -53,6 +53,9 @@
           slot-scope="{ row }"
           class="d-flex justify-content-around"
         >
+          <a href="" @click.prevent="chat(row)" title="Chat"
+            ><font-awesome-icon :icon="['far', 'comment-dots']"
+          /></a>
           <a
             v-show="$can('user_update')"
             href=""
@@ -144,7 +147,13 @@ export default {
       //   path: '/users/edit/' + data.id,
       // })
     },
-
+    chat(data) {
+      console.log(data)
+      this.$nuxt.$router.push('/chats/user/' + data.id)
+      // this.$router.push({
+      //   path: '/users/edit/' + data.id,
+      // })
+    },
     userdetail(data) {
       console.log(data)
       this.$nuxt.$router.push('/users/detail/' + data.id)

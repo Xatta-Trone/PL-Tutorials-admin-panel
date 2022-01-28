@@ -198,6 +198,9 @@ export default {
     // proxy: true,
     // prefix: '/admin/',
   },
+  // proxy: {
+  //   '/api/': { target: serverURL, pathRewrite: { '^/api/': '' } },
+  // },
 
   // proxy: {
   //   '/admin/': {
