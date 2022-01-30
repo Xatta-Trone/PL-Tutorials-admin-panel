@@ -16,6 +16,12 @@ export default [
     // permission: 'dashboard',
   },
   {
+    name: 'Pages',
+    url: '/pages',
+    icon: 'grid-fill',
+    // permission: 'dashboard',
+  },
+  {
     name: 'Chats',
     url: '/chats',
     icon: 'grid-fill',

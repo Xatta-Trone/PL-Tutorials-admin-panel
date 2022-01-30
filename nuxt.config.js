@@ -121,6 +121,9 @@ export default {
     {
       src: '~/plugins/apexchart.js',
     },
+    {
+      src: '~/plugins/markdown.js',
+    },
 
     // {
     //   src: '~/plugins/perfect-scrollbar.js',
