@@ -129,7 +129,7 @@ export default {
       user: null,
       btntxt: 'Reset',
       form: {
-        password: '12345678',
+        password: '',
         password_confirmation: '',
         email: this.$route.query.email,
         token: this.$route.query.token,

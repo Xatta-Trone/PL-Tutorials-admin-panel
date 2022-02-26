@@ -40,6 +40,11 @@
             >
               {{ loading ? 'Uploading data' : 'Upload data' }}
             </button>
+
+            <small class="text-danger"
+              >It may take a minute or two, please wait till notification
+              appears</small
+            >
           </li>
           <li class="list-group-item">
             4. If successfully uploaded then click on the button below.
@@ -57,12 +62,12 @@
           <li class="list-group-item">
             5. Merge data if successully uploaded
             <button
-              :disabled="loadingmerge"
+              :disabled="!loadingmerge"
               href="#"
               class="btn icon icon-left btn-primary"
               @click.prevent="merge"
             >
-              {{ loadingmerge ? 'Merging data' : 'merge data' }}
+              {{ mergedatatext }}
             </button>
           </li>
         </ul>
@@ -81,6 +86,7 @@ export default {
       file: '',
       loading: false,
       loadingmerge: false,
+      mergedatatext: 'Merge data',
     }
   },
   methods: {
@@ -114,6 +120,7 @@ export default {
               res.data.count + ' records inserted successfully'
             )
           }
+          this.loadingmerge = true
 
           if (res.data.hasKey('status')) this.getmessage()
         })
@@ -129,14 +136,15 @@ export default {
         })
     },
     merge() {
-      this.loadingmerge = true
+      this.loadingmerge = false
+      this.mergedatatext = 'Merging data...'
       console.log('submit!')
       let vm = this
 
       this.$axios
         .get('admin/dummyuserdata')
         .then((res) => {
-          vm.loadingmerge = false
+          vm.loadingmerge = true
           console.log(res)
           if (res.data.hasOwnProperty('message')) {
             this.getmessage(res.data.message)
@@ -146,7 +154,7 @@ export default {
           if (res.data.hasKey('status')) this.getmessage()
         })
         .catch((err) => {
-          vm.loadingmerge = false
+          vm.loadingmerge = true
           console.log('Errrr', err)
           if (err.response.data.hasOwnProperty('message')) {
             this.getmessage(err.response.data.message)
@@ -154,6 +162,9 @@ export default {
           if (err.response.data.hasOwnProperty('errors')) {
             this.serverErrors = Object.entries(err.response.data.errors)
           }
+        })
+        .finally(() => {
+          this.mergedatatext = 'Merge data'
         })
     },
   },
