@@ -65,7 +65,7 @@ export default {
       btntxt: 'Log in',
       login: {
         email: 'monzurul.ce.buet@gmail.com',
-        password: '12345678',
+        password: 'password',
         visitorid: '',
       },
     }

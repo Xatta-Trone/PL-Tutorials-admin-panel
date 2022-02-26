@@ -125,17 +125,26 @@ export default {
       src: '~/plugins/markdown.js',
     },
 
-    // {
-    //   src: '~/plugins/perfect-scrollbar.js',
-    //   ssr: false,
-    // },
+    {
+      src: '~/plugins/echo.js',
+    },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: [
+    [
+      '@nuxtjs/laravel-echo',
+      {
+        broadcaster: 'pusher',
+        key: '0d804a37eb14ea67a5ce',
+        cluster: 'ap1',
+        forceTLS: true,
+      },
+    ],
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -225,4 +234,5 @@ export default {
   router: {
     middleware: ['auth'],
   },
+  echo: {},
 }

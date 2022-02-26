@@ -135,7 +135,9 @@ export default {
       },
     }
   },
-  mounted() {},
+  mounted() {
+
+  },
   methods: {
     edit(data) {
       console.log(data)

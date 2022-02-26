@@ -35,16 +35,27 @@
                   <div
                     class="chat"
                     :class="{ 'chat-left': msg.replied_by == null }"
-                    v-for="msg in messages"
+                    v-for="(msg,i) in messages"
                     :key="msg.id"
                   >
                     <div class="chat-body">
-                      <div class="chat-message">
-                        <small>{{ timeSince(msg.created_at) }}</small
+                      <div class="chat-message" :class="msg.deleted_at == null ? 'text-dark':'text-muted'">
+                        <small
+                          ><time-ago
+                            :datetime="msg.created_at"
+                            tooltip
+                          />
+                          ago</small
                         ><br />
 
                         {{ msg.message }}
+                        <a v-if="msg.deleted_at == null" @click.prevent="dltmsg(msg,i)"
+                          ><font-awesome-icon
+                            class="text-danger"
+                            :icon="['far', 'trash-alt']"
+                        /></a>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -85,10 +96,11 @@
 import { required } from 'vuelidate/lib/validators'
 import CustomForm from '~/components/vuelidate/CustomForm.vue'
 import CustomError from '~/components/vuelidate/CustomError.vue'
+import { TimeAgo } from 'vue2-timeago'
 
 export default {
   layout: 'app',
-  components: { CustomForm, CustomError },
+  components: { CustomForm, CustomError, TimeAgo },
 
   data() {
     return {
@@ -105,6 +117,12 @@ export default {
     }
   },
   mounted() {
+    this.$echo.channel('chat-admin')
+      .listen('.chat-msg', (e) => {
+          console.log(e);
+          e.msg != null ? this.messages.push(e.msg) : '';
+
+      });
     console.log(this.$nuxt.$route.params.id)
     this.getData()
     // this.getUser()
@@ -201,6 +219,35 @@ export default {
           }
         })
     },
+
+     dltmsg(msg,i) {
+       if(!confirm('are you sure ?')) return;
+      let vm = this
+      vm.chatboxdisabled = true
+      this.$axios
+        .delete('admin/chats/'+msg.id)
+        .then((res) => {
+          msg.deleted_at = new Date();
+          // vm.messages.splice(i,1)
+          vm.currentmessage.message = ''
+          vm.chatboxdisabled = false
+          console.log(res)
+          if (res.data.hasOwnProperty('message')) {
+            this.getmessage(res.data.message)
+          }
+        })
+        .catch((err) => {
+          vm.chatboxdisabled = false
+          console.log('Errrr', err)
+          if (err.response.data.hasOwnProperty('message')) {
+            this.getmessage(err.response.data.message)
+          }
+
+          if (err.response.data.hasOwnProperty('errors')) {
+            this.serverErrors = Object.entries(err.response.data.errors)
+          }
+        })
+    },
   },
 
   validations: {
@@ -224,7 +271,7 @@ export default {
   border-radius: 5px;
 }
 .chat.chat-left .chat-message {
-  background: #5a8dee !important;
+  /* background: #5a8dee !important; */
   color: #fff;
   float: left !important;
 }
