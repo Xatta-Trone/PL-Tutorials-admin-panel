@@ -57,7 +57,7 @@ export default {
       loading: false,
       error: false,
       selectData: 'all',
-      columns: ['id', 'name', 'code', 'slug', 'actions'],
+      columns: ['id', 'name', 'code', 'slug','can_be_accessed_by', 'actions'],
       options: {
         perPage: 10,
         perPageValues: [5, 10, 15, 25, 50, 100],

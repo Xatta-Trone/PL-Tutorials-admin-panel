@@ -98,6 +98,38 @@
                     </div>
                   </custom-form>
 
+                  <custom-form
+                    :validator="$v.form.can_be_accessed_by"
+                    attribute="can_be_accessed_by"
+                  >
+                    <div class="col-12">
+                      <fieldset class="form-group">
+                        <label for="can_be_accessed_by">Accessible departments</label>
+                        <select
+                          class="choices form-select multiple-remove"
+                          id="can_be_accessed_by"
+                          v-model.trim="form.can_be_accessed_by"
+                          name="can_be_accessed_by"
+                          multiple="multiple"
+                        >
+                          <option value="">Select departments that can access</option>
+                          <option
+                            v-for="department in accessible_departments"
+                            :key="department"
+                            :value="department"
+                          >
+                            {{ department }}
+                          </option>
+                        </select>
+
+                      </fieldset>
+                      <custom-error
+                        :servererrors="serverErrors"
+                        chkkey="can_be_accessed_by"
+                      />
+                    </div>
+                  </custom-form>
+
                   <custom-form :validator="$v.form.image" attribute="image">
                     <div class="col-12">
                       <div class="form-group">
@@ -168,8 +200,23 @@ export default {
         code: '',
         slug: '',
         image: '',
+        can_be_accessed_by: [],
       },
       imagepreview: '',
+      accessible_departments: [
+        'arch',
+        'bme',
+        'ce',
+        'che',
+        'cse',
+        'eee',
+        'ipe',
+        'me',
+        'mme',
+        'name',
+        'urp',
+        'wre',
+      ],
     }
   },
   methods: {
@@ -270,6 +317,9 @@ export default {
       },
 
       image: {
+        required,
+      },
+      can_be_accessed_by: {
         required,
       },
     },

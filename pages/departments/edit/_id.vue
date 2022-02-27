@@ -98,6 +98,38 @@
                     </div>
                   </custom-form>
 
+                  <custom-form
+                    :validator="$v.form.can_be_accessed_by"
+                    attribute="can_be_accessed_by"
+                  >
+                    <div class="col-12">
+                      <fieldset class="form-group">
+                        <label for="can_be_accessed_by">Accessible departments</label>
+                        <select
+                          class="choices form-select multiple-remove"
+                          id="can_be_accessed_by"
+                          v-model.trim="form.can_be_accessed_by"
+                          name="can_be_accessed_by"
+                          multiple="multiple"
+                        >
+                          <option value="">Select departments that can access</option>
+                          <option
+                            v-for="department in accessible_departments"
+                            :key="department"
+                            :value="department"
+                          >
+                            {{ department }}
+                          </option>
+                        </select>
+
+                      </fieldset>
+                      <custom-error
+                        :servererrors="serverErrors"
+                        chkkey="can_be_accessed_by"
+                      />
+                    </div>
+                  </custom-form>
+
                   <custom-form :validator="$v.form.image" attribute="image">
                     <div class="col-12">
                       <div class="form-group">
@@ -154,8 +186,10 @@
 import { required, url } from 'vuelidate/lib/validators'
 import CustomForm from '~/components/vuelidate/CustomForm.vue'
 import CustomError from '~/components/vuelidate/CustomError.vue'
+// import Multiselect from 'vue-multiselect'
 
 export default {
+
   // middleware: 'guest',
   layout: 'app',
   components: { CustomForm, CustomError },
@@ -169,8 +203,23 @@ export default {
         code: '',
         slug: '',
         image: '',
+        can_be_accessed_by: [''],
       },
       imagepreview: '',
+      accessible_departments: [
+        'arch',
+        'bme',
+        'ce',
+        'che',
+        'cse',
+        'eee',
+        'ipe',
+        'me',
+        'mme',
+        'name',
+        'urp',
+        'wre',
+      ],
     }
   },
   mounted() {
@@ -193,8 +242,13 @@ export default {
         .then((res) => {
           vm.loading = false
           console.log(res)
+          if (res.data.post.can_be_accessed_by == null) {
+            res.data.post.can_be_accessed_by = []
+          } else {
+            res.data.post.can_be_accessed_by =
+              res.data.post.can_be_accessed_by.split(',')
+          }
           vm.form = res.data.post
-
           // if (res.data.hasKey('status')) this.getmessage()
         })
         .then(() => {
@@ -305,7 +359,13 @@ export default {
       image: {
         required,
       },
+
+      can_be_accessed_by: {
+        required,
+      },
     },
   },
 }
 </script>
+
+<style scoped></style>
