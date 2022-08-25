@@ -1,8 +1,9 @@
 // const baseURL = 'https://pl8.xattabyte.com/api/v1'
 // const serverURL = 'https://pl8.xattabyte.com/api/v1/'
 
-const baseURL = 'http://localhost:8000/api/v1'
-const serverURL = 'http://pltutorials8.xt:8080/api/v1/'
+const baseURL = process.env.AUTH_URL
+const serverURL = process.env.SERVER_URL
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -215,13 +216,11 @@ export default {
   // },
 
   // proxy: {
-  //   '/admin/': {
-  //     target: serverURL,
-  //     pathRewrite: { '^/admin/': '' },
-  //     changeOrigin: true,
-  //   },
+  //   // '/admin/': {
+  //   //   target: serverURL,
+  //   // },
   //   // '/laravel': {
-  //   //   target: 'http://localhost:8080',
+  //   //   target: baseURL,
   //   //   pathRewrite: { '^/laravel': '/' },
   //   // },
   // },
