@@ -7,8 +7,14 @@ import Vue from 'vue'
 // const baseURL = 'http://pltutorials8.xt:8080/'
 // const serverURL = 'http://pltutorials8.xt:8080/api/v1/'
 
-const baseURL = process.env.AUTH_URL
-const serverURL = process.env.SERVER_URL
+const baseURL =
+  process.env.NODE_ENV !== 'production'
+    ? process.env.AUTH_URL
+    : process.env.PROD_AUTH_URL
+const serverURL =
+  process.env.NODE_ENV !== 'production'
+    ? process.env.SERVER_URL
+    : process.env.PROD_SERVER_URL
 
 var mixin = {
   async asyncData({ $axios, store, app }) {

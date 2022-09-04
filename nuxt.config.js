@@ -1,8 +1,14 @@
 // const baseURL = 'https://pl8.xattabyte.com/api/v1'
 // const serverURL = 'https://pl8.xattabyte.com/api/v1/'
 
-const baseURL = process.env.AUTH_URL
-const serverURL = process.env.SERVER_URL
+const baseURL =
+  process.env.NODE_ENV !== 'production'
+    ? process.env.AUTH_URL
+    : process.env.PROD_AUTH_URL
+const serverURL =
+  process.env.NODE_ENV !== 'production'
+    ? process.env.SERVER_URL
+    : process.env.PROD_SERVER_URL
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode

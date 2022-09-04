@@ -1,0 +1,8 @@
+AUTH_URL="http://localhost:8000/api/v1"
+SERVER_URL="http://localhost:8000/api/v1/"
+MIX_PUSHER_APP_KEY="asdf"
+MIX_PUSHER_APP_CLUSTER="ap1"
+
+
+PROD_SERVER_URL="https://server.gre-sentence-equivalence.com/api/v1"
+PROD_LOGIN_URL="https://server.gre-sentence-equivalence.com/api/v1"
