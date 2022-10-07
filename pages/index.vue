@@ -1,11 +1,5 @@
 <template>
   <div>
-    hello admin
-
-    <span v-if="this.$store.state.auth.loggedIn"
-      >{{ this.$auth.user.name }}
-    </span>
-    <button @click="logout">logout</button>
 
     <div class="row" v-if="dashboard">
       <div class="col-6 col-lg-3 col-md-6">
@@ -23,25 +17,8 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="col-6 col-lg-3 col-md-6">
-        <div class="card">
-          <div class="card-body px-3 py-4-5">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="stats-icon red">
-                  <i class="iconly-boldProfile"></i>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <h6 class="text-muted font-semibold">New user today</h6>
-                <h6 class="font-extrabold mb-0">
-                  {{ dashboard.new_user_today }}
-                </h6>
-              </div>
-            </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/contacts" class="btn btn-light w-100">Visit page</nuxt-link>
           </div>
         </div>
       </div>
@@ -56,12 +33,38 @@
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">New user week</h6>
+                <h6 class="text-muted font-semibold">New User (today)</h6>
+                <h6 class="font-extrabold mb-0">
+                  {{ dashboard.new_user_today }}
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/users" class="btn btn-light w-100">Visit page</nuxt-link>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="stats-icon red">
+                  <i class="iconly-boldProfile"></i>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h6 class="text-muted font-semibold">New User (week)</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.new_user_thisweek }}
                 </h6>
               </div>
             </div>
+          </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/users" class="btn btn-light w-100">Visit page</nuxt-link>
           </div>
         </div>
       </div>
@@ -83,6 +86,9 @@
               </div>
             </div>
           </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/activities" class="btn btn-light w-100">Visit page</nuxt-link>
+          </div>
         </div>
       </div>
 
@@ -96,12 +102,15 @@
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Online users</h6>
+                <h6 class="text-muted font-semibold">Currently Online</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.online_users }}
                 </h6>
               </div>
             </div>
+          </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/users" class="btn btn-light w-100">Visit page</nuxt-link>
           </div>
         </div>
       </div>
@@ -116,10 +125,13 @@
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Users</h6>
+                <h6 class="text-muted font-semibold">Users (total)</h6>
                 <h6 class="font-extrabold mb-0">{{ dashboard.users_total }}</h6>
               </div>
             </div>
+          </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/users" class="btn btn-light w-100">Visit page</nuxt-link>
           </div>
         </div>
       </div>
@@ -141,6 +153,9 @@
               </div>
             </div>
           </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/activities" class="btn btn-light w-100">Visit page</nuxt-link>
+          </div>
         </div>
       </div>
 
@@ -154,12 +169,15 @@
                 </div>
               </div>
               <div class="col-md-8">
-                <h6 class="text-muted font-semibold">Userdata</h6>
+                <h6 class="text-muted font-semibold">User Data</h6>
                 <h6 class="font-extrabold mb-0">
                   {{ dashboard.total_userdatas }}
                 </h6>
               </div>
             </div>
+          </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/userdatas" class="btn btn-light w-100">Visit page</nuxt-link>
           </div>
         </div>
       </div>
@@ -181,6 +199,9 @@
               </div>
             </div>
           </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/softwares" class="btn btn-light w-100">Visit page</nuxt-link>
+          </div>
         </div>
       </div>
 
@@ -200,6 +221,9 @@
                 </h6>
               </div>
             </div>
+          </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/books" class="btn btn-light w-100">Visit page</nuxt-link>
           </div>
         </div>
       </div>
@@ -221,6 +245,9 @@
               </div>
             </div>
           </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/posts" class="btn btn-light w-100">Visit page</nuxt-link>
+          </div>
         </div>
       </div>
 
@@ -240,6 +267,9 @@
                 </h6>
               </div>
             </div>
+          </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/testimonials" class="btn btn-light w-100">Visit page</nuxt-link>
           </div>
         </div>
       </div>
@@ -261,8 +291,35 @@
               </div>
             </div>
           </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/faqs" class="btn btn-light w-100">Visit page</nuxt-link>
+          </div>
         </div>
       </div>
+
+      <div class="col-6 col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="stats-icon red">
+                  <i class="iconly-boldPaper-Fail"></i>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h6 class="text-muted font-semibold">Bugs</h6>
+                <h6 class="font-extrabold mb-0">
+                  {{ dashboard.bugs }}
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="card-text text-center">
+            <nuxt-link to="/bugs" class="btn btn-light w-100">Visit page</nuxt-link>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="row">
