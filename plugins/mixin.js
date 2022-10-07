@@ -16,6 +16,11 @@ const serverURL =
     ? process.env.SERVER_URL
     : process.env.PROD_SERVER_URL
 
+const mainURL =
+  process.env.NODE_ENV !== 'production'
+    ? process.env.BASE_URL
+    : process.env.PROD_BASE_URL
+
 var mixin = {
   async asyncData({ $axios, store, app }) {
     $axios
@@ -43,6 +48,9 @@ var mixin = {
       },
       get serverurl() {
         return serverURL
+      },
+      get mainurl() {
+        return mainURL
       },
     }
   },

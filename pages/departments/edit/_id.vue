@@ -255,7 +255,7 @@ export default {
           this.imagepreview =
             this.form.image == null
               ? ''
-              : this.baseurl + 'storage/departments' + '/' + this.form.image
+              : this.mainurl + '/storage/departments' + '/' + this.form.image
         })
         .catch((err) => {
           vm.loading = false
