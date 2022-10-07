@@ -225,9 +225,10 @@ export default {
     },
 
     userresetpass(data) {
-      console.log(data)
+      console.log(data);
+       let confirm = prompt("Please enter your student id to confirm");
 
-      if (confirm('Are you sure to change the password ?')) {
+      if (confirm != null && confirm == this.$auth.user.student_id) {
         console.log(data.deleted_at != null)
         let vm = this
         vm.loading = true
@@ -251,6 +252,8 @@ export default {
               this.getmessage('')
             }
           })
+      }else{
+        this.$toast.error('Student id does not match!!');
       }
     },
   },
