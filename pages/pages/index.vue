@@ -27,11 +27,11 @@
           slot-scope="{ row }"
           class="d-flex justify-content-around"
         >
-          <a href="" @click.prevent="edit(row)" title="book Edit"
+          <a href="" @click.prevent="edit(row)" title="Page Edit"
             ><font-awesome-icon :icon="['far', 'edit']"
           /></a>
 
-          <a href="" title="book Delete" @click.prevent="handleDelete(row, i)"
+          <a href="" title="Page Delete" @click.prevent="handleDelete(row, i)"
             ><font-awesome-icon
               class="text-danger"
               :icon="['far', 'trash-alt']"

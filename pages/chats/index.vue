@@ -53,7 +53,7 @@
             v-show="$can('user_update')"
             href=""
             @click.prevent="edit(row)"
-            title="User Edit"
+            title="Chat Edit"
             ><font-awesome-icon :icon="['far', 'edit']"
           /></a>
 
@@ -64,7 +64,7 @@
           <a
             v-show="$can('user_delete')"
             href=""
-            title="User Delete"
+            title="Chat Delete"
             @click.prevent="userdelete(row, i)"
             ><font-awesome-icon
               class="text-danger"
@@ -74,7 +74,7 @@
           <a
             v-show="$can('user_view')"
             href=""
-            title="User Detail"
+            title="Chat Detail"
             @click.prevent="userdetail(row)"
             ><font-awesome-icon
               class="text-danger"

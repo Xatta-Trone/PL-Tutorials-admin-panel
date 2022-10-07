@@ -14,7 +14,7 @@
         :options="options"
       >
         <div slot="user_name" slot-scope="{ row }">
-          <span @click="view(row)">{{ row.user_name }}</span>
+          <span @click="view(row)" style="cursor:pointer;">{{ row.user_name }}</span>
         </div>
       </v-server-table>
     </div>

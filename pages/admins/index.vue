@@ -49,14 +49,14 @@
             v-show="$can('admin_update')"
             href=""
             @click.prevent="edit(row)"
-            title="User Edit"
+            title="Admin Edit"
             ><font-awesome-icon :icon="['far', 'edit']"
           /></a>
 
           <a
             v-show="$can('admin_delete')"
             href=""
-            title="User Delete"
+            title="Admin Delete"
             @click.prevent="userdelete(row, i)"
             ><font-awesome-icon
               class="text-danger"
@@ -66,7 +66,7 @@
           <a
             v-show="$can('admin_view')"
             href=""
-            title="User Detail"
+            title="Admin Detail"
             @click.prevent="userdetail(row)"
             ><font-awesome-icon
               class="text-danger"
@@ -77,7 +77,7 @@
             v-if="row.deleted_at != null"
             v-show="$can('admin_update')"
             href=""
-            title="User Delete"
+            title="Admin Delete"
             @click.prevent="userrestore(row)"
             ><font-awesome-icon class="text-danger" :icon="['fas', 'redo-alt']"
           /></a>

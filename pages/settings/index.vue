@@ -27,14 +27,14 @@
             v-show="$can('settings_update')"
             href=""
             @click.prevent="edit(row)"
-            title="Post Edit"
+            title="Edit"
             ><font-awesome-icon :icon="['far', 'edit']"
           /></a>
 
           <a
             v-show="$can('settings_update')"
             href=""
-            title="Post Delete"
+            title="Delete"
             @click.prevent="handleDelete(row, i)"
             ><font-awesome-icon
               class="text-danger"

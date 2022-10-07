@@ -31,14 +31,14 @@
             v-show="$can('faq_update')"
             href=""
             @click.prevent="edit(row)"
-            title="faq Edit"
+            title="Roles Edit"
             ><font-awesome-icon :icon="['far', 'edit']"
           /></a>
 
           <a
             v-show="$can('faq_delete')"
             href=""
-            title="faq Delete"
+            title="Roles Delete"
             @click.prevent="handleDelete(row, i)"
             ><font-awesome-icon
               class="text-danger"

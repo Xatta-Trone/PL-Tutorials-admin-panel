@@ -27,14 +27,14 @@
             v-show="$can('book_update')"
             href=""
             @click.prevent="edit(row)"
-            title="book Edit"
+            title="Course Edit"
             ><font-awesome-icon :icon="['far', 'edit']"
           /></a>
 
           <a
             v-show="$can('book_delete')"
             href=""
-            title="book Delete"
+            title="Course Delete"
             @click.prevent="handleDelete(row, i)"
             ><font-awesome-icon
               class="text-danger"
