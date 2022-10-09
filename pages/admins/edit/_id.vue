@@ -81,6 +81,7 @@
                         <input
                           v-model.trim="$v.form.student_id.$model"
                           @input="$v.form.student_id.$touch()"
+                          readonly
                           :class="{
                             'is-invalid ': $v.form.student_id.$error,
                           }"
