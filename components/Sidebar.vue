@@ -234,6 +234,12 @@ export default {
     },
     subIsActive(item) {
       const paths = Array.isArray(item.submenu) ? item.submenu : []
+
+      if (paths.length == 0 && window.location.pathname != item.url) {
+        let currentUrl = window.location.pathname.split('/').filter(e => e != "");
+        return currentUrl.some(e => e == item.url.substring(1));
+      }
+
       return paths.some((path) => {
         return this.$route.path.indexOf(path.url) === 0
       })
