@@ -30,7 +30,7 @@
         </div>
 
 
-          <div class="card">
+          <div class="card p-3">
           <div class="card-content">
             <form class="form form-vertical">
               <div class="form-body">
@@ -67,6 +67,10 @@
                       </div>
                     </div>
                   </custom-form>
+                  <custom-form
+                    :validator="$v.new_reply.mailto"
+                    attribute="Mailto"
+                  >
 
                   <div class="col-12">
                       <div class="form-group has-icon-left">
@@ -309,7 +313,7 @@ export default {
       this.$axios
         .put('admin/contacts/' + id, this.new_reply)
         .then((res) => {
-          vm.loading = false
+
           console.log(res)
 
           if (res.data.hasOwnProperty('message')) {
@@ -317,10 +321,11 @@ export default {
           }
 
           this.$v.$reset()
-          this.$router.push('/contacts')
+          // this.$router.push('/contacts')
+          this.getData();
         })
         .catch((err) => {
-          vm.loading = false
+
           console.log('Errrr', err)
           if (err.response.data.hasOwnProperty('message')) {
             this.getmessage(err.response.data.message)
@@ -329,7 +334,7 @@ export default {
           if (err.response.data.hasOwnProperty('errors')) {
             this.serverErrors = Object.entries(err.response.data.errors)
           }
-        })
+        }).finally(() => vm.loading = false)
     },
   },
 

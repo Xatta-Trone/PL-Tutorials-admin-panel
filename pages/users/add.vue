@@ -8,7 +8,7 @@
     <div v-else>
       <div>
         <pageheader title="Users" urlto="/users" urltxt="Go back"></pageheader>
-        <div class="card">
+        <div class="card p-3">
           <div class="card-content">
             <!-- <div class="card-body">
           {{ errBag('email') }}
@@ -198,7 +198,7 @@ export default {
         student_id: '',
         email: '',
         status: 1,
-        whitelisted: 1,
+        whitelisted: 0,
       },
     }
   },

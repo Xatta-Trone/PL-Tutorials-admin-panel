@@ -6,7 +6,7 @@
       <content-placeholders-text :lines="3" />
     </content-placeholders>
     <div v-else>
-      <pageheader title="Select a user ot chat with"></pageheader>
+      <pageheader title="Select a user ot chat with (This feature is not complete, do not use it)"></pageheader>
 
       <div class="col-12">
         <fieldset class="form-group">

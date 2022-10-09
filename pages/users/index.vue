@@ -53,9 +53,9 @@
           slot-scope="{ row }"
           class="d-flex justify-content-around"
         >
-          <a href="" @click.prevent="chat(row)" title="Chat"
+          <!-- <a href="" @click.prevent="chat(row)" title="Chat"
             ><font-awesome-icon :icon="['far', 'comment-dots']"
-          /></a>
+          /></a> -->
           <a
             v-show="$can('user_update')"
             href=""

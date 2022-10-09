@@ -11,7 +11,7 @@
         urlto="/users"
         urltxt="Go back"
       ></pageheader>
-      <div class="card">
+      <div class="card p-3">
         <div class="card-content">
           <form class="form form-vertical">
             <div class="form-body">
@@ -172,6 +172,36 @@
                   </div>
                 </custom-form>
 
+                <custom-form
+                  :validator="$v.form.max_devices"
+                  attribute="max_devices"
+                >
+                  <div class="col-12">
+                    <div class="form-group has-icon-left">
+                      <label for="mobile-id-icon">User Max allowed devices</label>
+                      <div class="position-relative">
+                        <input
+                          v-model.trim="$v.form.max_devices.$model"
+                          @input="$v.form.max_devices.$touch()"
+                          :class="{ 'is-invalid ': $v.form.max_devices.$error }"
+                          name="max_devices"
+                          type="text"
+                          class="form-control"
+                          placeholder="Max devices"
+                          id="mobile-id-icon"
+                        />
+                        <div class="form-control-icon">
+                          <i class="bi bi-person-badge"></i>
+                        </div>
+                      </div>
+                      <custom-error
+                        :servererrors="serverErrors"
+                        chkkey="max_devices"
+                      />
+                    </div>
+                  </div>
+                </custom-form>
+
                 <div class="col-12 d-flex justify-content-end">
                   <button
                     type="submit"
@@ -218,6 +248,7 @@ export default {
         status: 1,
         whitelisted: 1,
         user_letter: '',
+        max_devices: ''
       },
     }
   },
@@ -315,6 +346,9 @@ export default {
         required,
       },
       user_letter: {
+        required,
+      },
+      max_devices: {
         required,
       },
     },

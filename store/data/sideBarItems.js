@@ -163,7 +163,7 @@ export default [
   {
     name: 'Admins',
     url: '/admins',
-    icon: 'person-fill',
+    icon: 'grid-fill',
     permission: 'admin_show',
   },
   {

@@ -8,8 +8,7 @@
     <div v-else>
       <pageheader
         title="Ban History"
-        :urlto="this.$nuxt.$route.fullPath + '/add'"
-        urltxt="Add Ban history"
+
       ></pageheader>
 
       <div class="col-12"></div>

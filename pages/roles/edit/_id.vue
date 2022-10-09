@@ -8,11 +8,11 @@
     <div v-else>
       <div>
         <pageheader
-          title="permissions Edit"
-          :urlto="'/permissions'"
+          title="Role Edit"
+          :urlto="'/roles'"
           urltxt="Go back"
         ></pageheader>
-        <div class="card">
+        <div class="card p-3">
           <div class="card-content">
             <form class="form form-vertical">
               <div class="form-body">
@@ -41,6 +41,55 @@
                           chkkey="name"
                         />
                       </div>
+                    </div>
+                  </custom-form>
+
+                  <custom-form
+                    :validator="$v.form.permissions"
+                    attribute="permissions"
+                  >
+                    <div class="col-12">
+                      <label class="my-2">permissions</label>
+                      <br />
+                      <div class="form-check d-inline-block">
+                        <div class="checkbox my-3" @click="selectallpermission">
+                          <input
+                            type="checkbox"
+                            id="chki"
+                            class="form-check-input"
+                            :checked="selectall"
+                          />
+                          <label for="chki">Select all</label>
+                        </div>
+                      </div>
+
+                      <ul class="list-unstyled mb-0">
+                        <li
+                          class="d-inline-block me-2 mb-1"
+                          v-for="permisson in permissions"
+                          :key="permisson.name"
+                        >
+                          <div class="form-check">
+                            <div class="checkbox">
+                              <input
+                                type="checkbox"
+                                class="form-check-input"
+                                :value="permisson.id"
+                                v-model="form.permissions"
+                                :id="permisson.id"
+                              />
+                              <label :for="permisson.id">{{
+                                permisson.name
+                              }}</label>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+
+                      <custom-error
+                        :servererrors="serverErrors"
+                        chkkey="permissions"
+                      />
                     </div>
                   </custom-form>
 
@@ -79,7 +128,10 @@ export default {
       loading: false,
       form: {
         name: '',
+        permissions: [],
       },
+      permissions: [],
+      selectall: false,
     }
   },
   methods: {
@@ -92,18 +144,25 @@ export default {
       let vm = this
       let id = vm.$nuxt.$route.params.id
       vm.loading = true
+
       console.log(id)
       vm.$axios
-        .get('admin/permissions/' + id)
+        .get('admin/roles/' + id)
         .then((res) => {
-          vm.loading = false
           console.log(res)
+
+          if (res.data.post.permissions.length > 0) {
+            res.data.post.permissions = res.data.post.permissions.map(
+              (p) => p.id
+            )
+          }
+
           vm.form = res.data.post
 
           // if (res.data.hasKey('status')) this.getmessage()
         })
+        .then(() => this.getpermissions())
         .catch((err) => {
-          vm.loading = false
           console.log('Errrr', err)
           if (err.response.data.hasOwnProperty('message')) {
             this.getmessage(err.response.data.message)
@@ -111,6 +170,7 @@ export default {
             this.getmessage('')
           }
         })
+        .finally(() => (this.loading = false))
     },
 
     submit() {
@@ -127,9 +187,8 @@ export default {
 
       let id = vm.$nuxt.$route.params.id
       this.$axios
-        .post('admin/permissions/' + id + '?_method=PUT', this.form)
+        .post('admin/roles/' + id + '?_method=PUT', this.form)
         .then((res) => {
-          vm.loading = false
           console.log(res)
 
           if (res.data.hasOwnProperty('message')) {
@@ -137,10 +196,10 @@ export default {
           }
 
           this.$v.$reset()
-          this.$router.push('/permissions')
+          // this.$router.push('/roles');
+          this.getData()
         })
         .catch((err) => {
-          vm.loading = false
           console.log('Errrr', err)
           if (err.response.data.hasOwnProperty('message')) {
             this.getmessage(err.response.data.message)
@@ -150,6 +209,43 @@ export default {
             this.serverErrors = Object.entries(err.response.data.errors)
           }
         })
+        .finally(() => (this.loading = false))
+    },
+    getpermissions() {
+      this.loading = true
+      this.$axios
+        .get('admin/getpermissions')
+        .then((res) => {
+          this.loading = false
+          console.log(res)
+          if (res.data.hasOwnProperty('message')) {
+            this.getmessage(res.data.message)
+          }
+          this.permissions = res.data.data
+
+          // if (res.data.hasKey('status')) this.getmessage()
+        })
+        .catch((err) => {
+          this.loading = false
+          console.log('Errrr', err)
+          if (err.response.data.hasOwnProperty('message')) {
+            this.getmessage(err.response.data.message)
+          }
+
+          if (err.response.data.hasOwnProperty('errors')) {
+            this.serverErrors = Object.entries(err.response.data.errors)
+          }
+        })
+    },
+    selectallpermission() {
+      this.selectall = !this.selectall
+      // console.log(this.form.permissions.length, this.permissions.length)
+      if (this.form.permissions.length == this.permissions.length) {
+        this.form.permissions = []
+      } else {
+        // console.log(this.permissions.map((e) => e.id))
+        this.form.permissions = this.permissions.map((e) => e.id)
+      }
     },
   },
   mounted() {

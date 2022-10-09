@@ -12,7 +12,7 @@
           :urlto="'/books'"
           urltxt="Go back"
         ></pageheader>
-        <div class="card">
+        <div class="card p-3">
           <div class="card-content">
             <form class="form form-vertical">
               <div class="form-body">
@@ -244,7 +244,7 @@
                     </quill-editor>
                   </div>
 
-                  <div class="col-12 d-flex justify-content-end">
+                  <div class="col-12 d-flex justify-content-end mt-4">
                     <button
                       type="submit"
                       class="btn btn-primary me-1 mb-1"

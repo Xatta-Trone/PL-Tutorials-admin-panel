@@ -12,14 +12,14 @@
           :urlto="'/faqs'"
           urltxt="Go back"
         ></pageheader>
-        <div class="card">
+        <div class="card p-3">
           <div class="card-content">
             <form class="form form-vertical">
               <div class="form-body">
                 <div class="row">
                   <custom-form :validator="$v.form.title" attribute="Title">
                     <div class="col-12">
-                      <div class="form-group has-icon-left">
+                      <div class="form-group">
                         <label for="first-name-icon">Title</label>
                         <div class="position-relative">
                           <input
@@ -32,9 +32,7 @@
                             placeholder="Title of faq"
                             id="first-name-icon"
                           />
-                          <div class="form-control-icon">
-                            <i class="bi bi-person"></i>
-                          </div>
+                          
                         </div>
                         <custom-error
                           :servererrors="serverErrors"

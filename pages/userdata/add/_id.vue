@@ -11,9 +11,7 @@
         urlto="/userdatas"
         urltxt="Go back"
       ></pageheader>
-      <div class="card">
-        <div class="card-content">
-          <form class="form form-vertical">
+      <form class="form form-vertical">
             <div class="form-body">
               <div class="row">
                 <p>
@@ -68,8 +66,8 @@
               </div>
             </div>
           </form>
-        </div>
-      </div>
+
+
     </div>
   </div>
 </template>

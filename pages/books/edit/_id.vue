@@ -12,7 +12,7 @@
           :urlto="'/books'"
           urltxt="Go back"
         ></pageheader>
-        <div class="card">
+        <div class="card p-3">
           <div class="card-content">
             <form class="form form-vertical">
               <div class="form-body">
@@ -330,7 +330,7 @@ export default {
           this.imagepreview =
             this.form.image == null
               ? ''
-              : this.baseurl +
+              : this.mainurl +
                 'storage/' +
                 this.form.post_type +
                 '/' +

@@ -45,26 +45,25 @@
                     {{ formatDateTime(form.created_at) }}
                   </li>
                 </ul>
-
-                <div class="col-12">
-                  <h5 class="mt-3">Activity</h5>
-                  <v-server-table
-                    :url="
-                      serverurl +
-                      'admin/admins/activitydata/' +
-                      $nuxt.$route.params.id
-                    "
-                    :columns="activity.columns"
-                    :options="activity.options"
-                  >
-                    <div slot="created_at" slot-scope="{ row }">
-                      {{ formatDateTime(row.created_at) }}
-                    </div>
-                  </v-server-table>
-                </div>
               </div>
             </div>
           </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="mt-3">Activity</h5>
+          <v-server-table
+            :url="
+              serverurl + 'admin/admins/activitydata/' + $nuxt.$route.params.id
+            "
+            :columns="activity.columns"
+            :options="activity.options"
+          >
+            <div slot="created_at" slot-scope="{ row }">
+              {{ formatDateTime(row.created_at) }}
+            </div>
+          </v-server-table>
         </div>
       </div>
     </div>

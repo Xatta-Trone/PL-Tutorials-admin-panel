@@ -57,7 +57,7 @@ export default {
       loading: false,
       error: false,
       selectData: 'all',
-      columns: ['id', 'key', 'value', 'fa4_icon', 'fa5_icon', 'actions'],
+      columns: ['id', 'key', 'value', 'actions'],
       options: {
         perPage: 10,
         perPageValues: [5, 10, 15, 25, 50, 100],

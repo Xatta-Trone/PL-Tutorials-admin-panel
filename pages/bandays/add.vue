@@ -12,82 +12,72 @@
           :urlto="'/bandays'"
           urltxt="Go back"
         ></pageheader>
-        <div class="card">
-          <div class="card-content">
-            <form class="form form-vertical">
-              <div class="form-body">
-                <div class="row">
-                  <custom-form :validator="$v.form.level" attribute="level">
-                    <div class="col-12">
-                      <div class="form-group has-icon-left">
-                        <label for="first-name-icon">level to ban</label>
-                        <div class="position-relative">
-                          <input
-                            :class="{ 'is-invalid ': $v.form.level.$error }"
-                            v-model="form.level"
-                            @input="$v.form.level.$touch()"
-                            name="level"
-                            type="number"
-                            min="0"
-                            class="form-control"
-                            placeholder="level of ban"
-                            id="first-name-icon"
-                          />
-                          <div class="form-control-icon">
-                            <i class="bi bi-person"></i>
-                          </div>
-                        </div>
-                        <custom-error
-                          :servererrors="serverErrors"
-                          chkkey="level"
-                        />
+        <form class="form form-vertical">
+          <div class="form-body">
+            <div class="row">
+              <custom-form :validator="$v.form.level" attribute="level">
+                <div class="col-12">
+                  <div class="form-group has-icon-left">
+                    <label for="first-name-icon">level to ban</label>
+                    <div class="position-relative">
+                      <input
+                        :class="{ 'is-invalid ': $v.form.level.$error }"
+                        v-model="form.level"
+                        @input="$v.form.level.$touch()"
+                        name="level"
+                        type="number"
+                        min="0"
+                        class="form-control"
+                        placeholder="level of ban"
+                        id="first-name-icon"
+                      />
+                      <div class="form-control-icon">
+                        <i class="bi bi-person"></i>
                       </div>
                     </div>
-                  </custom-form>
-
-                  <custom-form :validator="$v.form.days" attribute="days">
-                    <div class="col-12">
-                      <div class="form-group has-icon-left">
-                        <label for="first-name-icon">days to ban</label>
-                        <div class="position-relative">
-                          <input
-                            :class="{ 'is-invalid ': $v.form.days.$error }"
-                            v-model="form.days"
-                            @input="$v.form.days.$touch()"
-                            name="days"
-                            type="number"
-                            min="0"
-                            class="form-control"
-                            placeholder="days of ban"
-                            id="first-name-icon"
-                          />
-                          <div class="form-control-icon">
-                            <i class="bi bi-person"></i>
-                          </div>
-                        </div>
-                        <custom-error
-                          :servererrors="serverErrors"
-                          chkkey="days"
-                        />
-                      </div>
-                    </div>
-                  </custom-form>
-
-                  <div class="col-12 d-flex justify-content-end">
-                    <button
-                      type="submit"
-                      class="btn btn-primary me-1 mb-1"
-                      @click.prevent="submit"
-                      :disabled="loading"
-                    >
-                      Submit
-                    </button>
+                    <custom-error :servererrors="serverErrors" chkkey="level" />
                   </div>
                 </div>
+              </custom-form>
+
+              <custom-form :validator="$v.form.days" attribute="days">
+                <div class="col-12">
+                  <div class="form-group has-icon-left">
+                    <label for="first-name-icon">days to ban</label>
+                    <div class="position-relative">
+                      <input
+                        :class="{ 'is-invalid ': $v.form.days.$error }"
+                        v-model="form.days"
+                        @input="$v.form.days.$touch()"
+                        name="days"
+                        type="number"
+                        min="0"
+                        class="form-control"
+                        placeholder="days of ban"
+                        id="first-name-icon"
+                      />
+                      <div class="form-control-icon">
+                        <i class="bi bi-person"></i>
+                      </div>
+                    </div>
+                    <custom-error :servererrors="serverErrors" chkkey="days" />
+                  </div>
+                </div>
+              </custom-form>
+
+              <div class="col-12 d-flex justify-content-end">
+                <button
+                  type="submit"
+                  class="btn btn-primary me-1 mb-1"
+                  @click.prevent="submit"
+                  :disabled="loading"
+                >
+                  Submit
+                </button>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
