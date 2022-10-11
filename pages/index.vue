@@ -177,7 +177,7 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/userdatas" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/userdata" class="btn btn-light w-100">Visit page</nuxt-link>
           </div>
         </div>
       </div>
