@@ -7,6 +7,6 @@ export default ({ app }, inject) => {
     ) {
       return true
     }
-    return app.store.getters.checkPermission(permission)
+    return app.store.getters['permissions/checkPermission'](permission)
   })
 }

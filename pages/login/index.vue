@@ -86,7 +86,10 @@ export default {
             console.log('asdfsf')
             this.$axios
               .get('/admin/permissions')
-              .then((res) => this.$gates.setPermissions(res.data))
+              .then((res) => {
+                const permissions = res.data.data.map((e) => e.name)
+                this.$gates.setPermissions(permissions)
+              })
               // .then((res) => this.$forceUpdate())
               .catch((err) => console.log(err))
           })

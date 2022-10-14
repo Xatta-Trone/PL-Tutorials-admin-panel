@@ -78,7 +78,7 @@ export default [
     name: 'Softwares',
     url: '/softwares',
     icon: 'grid-fill',
-    permission: 'software_view',
+    permission: 'software_show',
     // submenu: [
     //   {
     //     name: 'List',
@@ -96,7 +96,7 @@ export default [
     name: 'Books',
     url: '/books',
     icon: 'grid-fill',
-    permission: 'book_view',
+    permission: 'book_show',
     // submenu: [
     //   {
     //     name: 'List',

@@ -1,9 +1,5 @@
-import Vue from 'vue'
-import sideBarItems from './data/sideBarItems'
-
 export const state = () => ({
-  sideBarItems,
-  // permissions: [],
+  permissions: [],
 })
 
 export const mutations = {
@@ -19,5 +15,9 @@ export const getters = {
   checkPermission: (state) => (permission) => {
     // console.log(permission, state.permissions.includes(permission))
     return state.permissions.includes(permission)
+
+    // state.permissions.filter(function (e) {
+    //   return e.name === permission
+    // }).length > 0
   },
 }
