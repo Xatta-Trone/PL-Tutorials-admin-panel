@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="row" v-if="dashboard">
       <div class="col-6 col-lg-3 col-md-6">
         <div class="card">
@@ -18,7 +17,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/contacts" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/contacts" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -41,7 +42,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/users" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/users" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -64,7 +67,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/users" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/users" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -87,7 +92,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/activities" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/activities" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -110,7 +117,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/users" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/users" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -131,7 +140,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/users" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/users" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -154,7 +165,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/activities" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/activities" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -177,7 +190,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/userdata" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/userdata" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -200,7 +215,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/softwares" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/softwares" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -223,7 +240,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/books" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/books" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -246,7 +265,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/posts" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/posts" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -269,7 +290,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/testimonials" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/testimonials" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -292,7 +315,9 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/faqs" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/faqs" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -315,11 +340,12 @@
             </div>
           </div>
           <div class="card-text text-center">
-            <nuxt-link to="/bugs" class="btn btn-light w-100">Visit page</nuxt-link>
+            <nuxt-link to="/bugs" class="btn btn-light w-100"
+              >Visit page</nuxt-link
+            >
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="row">
@@ -333,16 +359,66 @@
         :series="activity.series"
       ></apexchart>
     </div>
+
     <div class="row">
       <div class="col-12">
-        <apexchart
-          ref="piechart"
-          width="100%"
-          height="300"
-          type="pie"
-          :options="deptbachDataChart.options"
-          :series="deptbachDataChart.series"
-        ></apexchart>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link active"
+              id="chart-tab"
+              data-bs-toggle="tab"
+              href="#chart"
+              role="tab"
+              aria-controls="chart"
+              aria-selected="true"
+              >Chart View</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="profile-tab"
+              data-bs-toggle="tab"
+              href="#profile"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+              tabindex="-1"
+              >Table view</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div
+            class="tab-pane fade active show"
+            id="chart"
+            role="tabpanel"
+            aria-labelledby="chart-tab"
+          >
+            <apexchart
+              ref="piechart"
+              width="100%"
+              height="300"
+              type="pie"
+              :options="deptbachDataChart.options"
+              :series="deptbachDataChart.series"
+            ></apexchart>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+          >
+            <v-client-table
+              ref="deptData"
+              :data="tabledata.deptBatchDataTable"
+              :columns="tabledata.columns"
+              :options="tabledata.options"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -356,12 +432,27 @@ export default {
     title: 'Dashboard',
     meta: [],
   },
+  computed: {
+    getDeptBatchDataForTable() {
+      if (this.deptBatchData.length > 0) {
+        return this.deptBatchData.labels.map(label, (index) => {
+          return {
+            deptBatch: label,
+            count: this.deptBatchData.data[index],
+          }
+        })
+      }
+
+      return []
+    },
+  },
   data() {
     return {
       loading: false,
       dashboard: {},
       chartData: [],
       deptBatchData: [],
+      deptBatchDataTable: [],
       activity: {
         options: {
           chart: {
@@ -401,6 +492,11 @@ export default {
           },
         },
         series: [],
+      },
+      tabledata: {
+        columns: ['label', 'data'],
+        deptBatchDataTable: [],
+        options: {},
       },
     }
   },
@@ -489,6 +585,22 @@ export default {
             labels: res.data['labels'],
             series: res.data['data'],
           }
+
+          // add to table data
+
+          if (res.data['labels']) {
+            // console.log(res.data.labels);
+
+            this.$refs.deptData.setLoadingState(true)
+
+            vm.tabledata.deptBatchDataTable = res.data.labels.map(
+              (label, index) => {
+                return { label, data: res.data.data[index] }
+              }
+            )
+          }
+
+          this.$refs.deptData.setLoadingState(false)
 
           // vm.$refs.realtimeChart.updateSeries(res.data['data'])
         })

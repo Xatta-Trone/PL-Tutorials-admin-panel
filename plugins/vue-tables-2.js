@@ -9,6 +9,7 @@ import MySortControl from '~/components/datatables/MySortControl'
 //   [(theme = 'bootstrap3')],
 //   [(swappables = {})]
 // )
+Vue.use(ClientTable)
 Vue.use(ServerTable, {}, false, 'bootstrap4', {
   sortControl: MySortControl,
 })
