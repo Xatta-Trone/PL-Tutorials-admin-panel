@@ -64,7 +64,7 @@
           /></a>
 
           <a
-            v-show="$can('admin_view')"
+            v-show="$can('admin_show')"
             href=""
             title="Admin Detail"
             @click.prevent="userdetail(row)"

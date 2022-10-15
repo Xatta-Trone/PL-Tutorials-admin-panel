@@ -31,21 +31,21 @@ export default [
     name: 'User Data',
     url: '/userdata',
     icon: 'grid-fill',
-    permission: 'dashboard',
+    permission: 'userdata_show',
   },
 
   {
     name: 'Activities',
     url: '/activities',
     icon: 'grid-fill',
-    permission: 'user_show',
+    permission: 'activities_show',
   },
 
   {
     name: 'Bans Log',
     url: '/banhistory',
     icon: 'grid-fill',
-    // permission: 'dashboard',
+    permission: 'user_show',
   },
 
   {
@@ -59,7 +59,7 @@ export default [
     name: 'Posts',
     url: '/posts',
     icon: 'grid-fill',
-    permission: 'post_view',
+    permission: 'post_show',
     // submenu: [
     //   {
     //     name: 'List',
@@ -122,21 +122,21 @@ export default [
     name: 'Departments',
     url: '/departments',
     icon: 'grid-fill',
-    permission: 'department_view',
+    permission: 'department_show',
   },
 
   {
     name: 'Level Term',
     url: '/levelterms',
     icon: 'grid-fill',
-    permission: 'level_term_view',
+    permission: 'level_term_show',
   },
 
   {
     name: 'Courses',
     url: '/courses',
     icon: 'grid-fill',
-    permission: 'course_view',
+    permission: 'course_show',
   },
 
   {
@@ -170,34 +170,34 @@ export default [
     name: 'Roles',
     url: '/roles',
     icon: 'grid-fill',
-    permission: 'role_view',
+    permission: 'role_show',
   },
 
   {
     name: 'Permissions',
     url: '/permissions',
     icon: 'grid-fill',
-    permission: 'permission_view',
+    permission: 'permission_show',
   },
 
-  {
-    name: 'Chats',
-    url: '/chats',
-    icon: 'grid-fill',
-    // permission: 'dashboard',
-  },
+  // {
+  //   name: 'Chats',
+  //   url: '/chats',
+  //   icon: 'grid-fill',
+  //   // permission: 'dashboard',
+  // },
   {
     name: 'Bans',
     url: '/bans',
     icon: 'grid-fill',
-    permission: 'ban_view',
+    permission: 'ban_show',
   },
 
   {
     name: 'Ban Days',
     url: '/bandays',
     icon: 'grid-fill',
-    permission: 'ban_view',
+    permission: 'ban_show',
   },
 
   {
@@ -205,5 +205,11 @@ export default [
     url: '/settings',
     icon: 'grid-fill',
     permission: 'utilities_show',
+  },
+  {
+    name: 'Bugs',
+    url: '/bugs',
+    icon: 'grid-fill',
+    // permission: 'utilities_show',
   },
 ]

@@ -24,7 +24,7 @@
           class="d-flex justify-content-around"
         >
           <a
-            v-show="$can('book_update')"
+            v-show="$can('course_update')"
             href=""
             @click.prevent="edit(row)"
             title="Course Edit"
@@ -32,7 +32,7 @@
           /></a>
 
           <a
-            v-show="$can('book_delete')"
+            v-show="$can('course_delete')"
             href=""
             title="Course Delete"
             @click.prevent="handleDelete(row, i)"

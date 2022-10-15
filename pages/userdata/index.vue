@@ -12,7 +12,7 @@
       :options="options"
     >
       <div slot="actions" slot-scope="{ row }">
-        <a v-if="row.status == 0" href="" @click.prevent="add(row)"
+        <a v-if="row.status == 0 && $can('user_create')" href="" @click.prevent="add(row)"
           ><font-awesome-icon icon="user-plus"
         /></a>
         <span v-if="row.status == 1"
