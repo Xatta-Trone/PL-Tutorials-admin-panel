@@ -63,7 +63,108 @@
             <div slot="created_at" slot-scope="{ row }">
               {{ formatDateTime(row.created_at) }}
             </div>
+            <div slot="model_type" slot-scope="{ row }">
+              {{ row.model_type.split('\\').pop() }}
+            </div>
+            <div slot="actions" slot-scope="{ row }" v-show="row.data">
+              <button
+                type="button"
+                class="btn btn-outline-primary block"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter"
+                @click="selectedData = row"
+              >
+                Detail
+              </button>
+            </div>
           </v-server-table>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        aria-labelledby="exampleModalCenterTitle"
+        style="display: none"
+        aria-hidden="true"
+      >
+        <div
+          class="
+            modal-dialog
+            modal-dialog-centered
+            modal-dialog-centered
+            modal-dialog-scrollable
+            modal-xl
+          "
+          role="document"
+        >
+          <div class="modal-content" v-if="selectedData">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">
+                {{ selectedData.label }}
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-x"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table class="table table-lg">
+                  <thead>
+                    <tr>
+                      <th>Old Data</th>
+                      <th>New Data</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr >
+                      <td>
+                        <span v-if="JSON.parse(selectedData.data).oldData != null">
+                        {{ Object.keys(JSON.parse(selectedData.data).oldData).join("::")  }}
+                        {{ Object.values(JSON.parse(selectedData.data).oldData).join("::")  }}
+                        </span>
+                      </td>
+                      <td>
+                        <span v-if="JSON.parse(selectedData.data).newData != null">
+                        {{ Object.keys(JSON.parse(selectedData.data).newData).join("::")  }}
+                        {{ Object.values(JSON.parse(selectedData.data).newData).join("::")  }}
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-light-secondary"
+                data-bs-dismiss="modal"
+              >
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">Close</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -78,8 +179,16 @@ export default {
     return {
       loading: false,
       form: {},
+      selectedData: null,
       activity: {
-        columns: ['id', 'activity', 'label', 'created_at'],
+        columns: [
+          'id',
+          'activity',
+          'model_type',
+          'label',
+          'created_at',
+          'actions',
+        ],
         options: {
           perPage: 10,
           perPageValues: [5, 10, 15, 25, 50, 100],
