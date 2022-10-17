@@ -46,6 +46,7 @@
               {{ item.name }}
             </li>
 
+
             <li
               v-show="$can(item.permission)"
               class="sidebar-item"

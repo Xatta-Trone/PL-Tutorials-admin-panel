@@ -3,12 +3,14 @@ export default [
     name: 'Menu',
     isTitle: true,
   },
+
   {
     name: 'Dashboard',
     url: '/',
     icon: 'grid-fill',
     permission: 'dashboard',
   },
+
   {
     name: 'Users',
     url: '/users',
