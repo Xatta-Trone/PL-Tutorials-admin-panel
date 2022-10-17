@@ -77,7 +77,9 @@
               <template v-else>
                 <nuxt-link class="sidebar-link" :to="item.url">
                   <i :class="`bi bi-${item.icon}`"></i>
-                  <span>{{ item.name }} {{ item.permission }}</span>
+                  <span>{{ item.name }}
+                     <!-- {{ item.permission }} -->
+                     </span>
                 </nuxt-link>
               </template>
             </li>

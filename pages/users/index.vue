@@ -12,6 +12,10 @@
         urltxt="Add User"
       ></pageheader>
 
+      <div class="row" v-show="$can('user_ban_check')">
+        <userbancheck/>
+      </div>
+
       <div class="col-12">
         <fieldset class="form-group">
           <label for="basicSelect">Select data</label>
