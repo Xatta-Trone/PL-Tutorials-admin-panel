@@ -206,17 +206,17 @@ export default {
   axios: {
     credentials: true,
     baseURL: serverURL,
-    // requestInterceptor: (config, { store }) => {
-    //   config.headers.common['access-token'] =
-    //     store.state.user.headers.access_token
-    //   config.headers.common['token-type'] = store.state.user.headers.token_type
-    //   config.headers.common['client'] = store.state.user.headers.client
-    //   config.headers.common['expiry'] = store.state.user.headers.expiry
-    //   config.headers.common['uid'] = store.state.user.headers.uid
-    //   // config.headers.common['Access-Control-Allow-Origin'] = '*'
+    requestInterceptor: (config, { store }) => {
+      //   config.headers.common['access-token'] =
+      //     store.state.user.headers.access_token
+      //   config.headers.common['token-type'] = store.state.user.headers.token_type
+      //   config.headers.common['client'] = store.state.user.headers.client
+      //   config.headers.common['expiry'] = store.state.user.headers.expiry
+      //   config.headers.common['uid'] = store.state.user.headers.uid
+      config.headers.common['Access-Control-Allow-Origin'] = '*'
 
-    //   return config
-    // },
+      //   return config
+    },
     // responseInterceptor: (res, ctx) => {},
     // proxy: true,
     // prefix: '/admin/',

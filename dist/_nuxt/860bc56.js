@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[65],{668:function(t,e,n){"use strict";n.r(e);var o={layout:"app",components:{postedit:n(584).default}},l=n(11),component=Object(l.a)(o,(function(){var t=this.$createElement;return(this._self._c||t)("postedit",{attrs:{post_type:"software"}})}),[],!1,null,null,null);e.default=component.exports}}]);
