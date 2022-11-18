@@ -14,16 +14,27 @@
         :columns="columns"
         :options="options"
       >
-      <div slot="causer.name" slot-scope="{ row }">{{ row.causer.name }} ({{ row.causer.student_id }})</div>
-      <div slot="causer_type" slot-scope="{ row }">{{ row.causer_type.split("\\").slice(-1).pop()}}</div>
+        <div slot="causer.name" slot-scope="{ row }">
+          {{ row.causer.name }} ({{ row.causer.student_id }})
+        </div>
+        <div slot="causer_type" slot-scope="{ row }">
+          {{ row.causer_type.split('\\').slice(-1).pop() }}
+        </div>
         <div slot="actions" slot-scope="{ row }">
           <span v-show="row.pat_id != null">
             <button
               class="btn"
               @click="showUserDetailByLogin(row.pat_id)"
-              :title="'Activity by login id::'+ row.pat_id"
+              :title="'Activity by login id::' + row.pat_id"
             >
               <font-awesome-icon :icon="['fas', 'list']" />
+            </button>
+            <button
+              class="btn"
+              @click="showUserDetail(row)"
+              title="User detail"
+            >
+              <font-awesome-icon :icon="['fas', 'user']" />
             </button>
           </span>
         </div>
@@ -43,14 +54,21 @@ export default {
       loading: false,
       error: false,
       selectData: 'all',
-      columns: ['id', 'causer.name','causer_type', 'activity', 'label','actions'],
+      columns: [
+        'id',
+        'causer.name',
+        'causer_type',
+        'activity',
+        'label',
+        'actions',
+      ],
       options: {
         perPage: 10,
         perPageValues: [5, 10, 15, 25, 50, 100],
         pagination: { chunk: 5 },
         orderBy: { ascending: false },
         headings: {
-          "causer.name" : "Name"
+          'causer.name': 'Name',
         },
         requestFunction(data) {
           let vm = this
@@ -111,9 +129,13 @@ export default {
           })
       }
     },
-     showUserDetailByLogin(patId) {
+    showUserDetailByLogin(patId) {
       console.log(patId)
       this.$nuxt.$router.push('/users/activity-by-login/' + patId)
+    },
+    showUserDetail(data) {
+      console.log(data)
+      this.$nuxt.$router.push('/users/detail/' + data.causer_id)
     },
   },
 }

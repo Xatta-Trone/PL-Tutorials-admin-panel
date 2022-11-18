@@ -8,7 +8,7 @@
     <div v-else>
       <pageheader
         :title="form.name + '\'s profile'"
-       :urlto="$nuxt.context.from ? $nuxt.context.from.fullPath : '/users'"
+        :urlto="$nuxt.context.from ? $nuxt.context.from.fullPath : '/users'"
         urltxt="Go back"
       ></pageheader>
       <div class="row">
@@ -27,7 +27,7 @@
           </li>
           <li class="list-group-item">
             <span class="badge bg-dark badge-pill ml-1">Account Active</span>
-            {{ form.whitelisted == 0 ? 'No' : 'Yes' }}
+            {{ form.status == 0 ? 'No' : 'Yes' }}
           </li>
           <li class="list-group-item">
             <span class="badge bg-dark badge-pill ml-1">Whitelisted</span>
@@ -36,6 +36,16 @@
           <li class="list-group-item">
             <span class="badge bg-dark badge-pill ml-1">Joined</span>
             {{ formatDateTime(form.created_at) }}
+          </li>
+          <li class="list-group-item">
+            <a
+              v-show="$can('user_update')"
+              class="btn btn-danger"
+              href=""
+              @click.prevent="edit(form)"
+              title="User Edit"
+              >Edit user</a
+            >
           </li>
         </ul>
 
@@ -52,16 +62,27 @@
               {{ formatDateTime(row.created_at) }}
             </div>
             <div slot="actions" slot-scope="{ row }">
-
-              <a href="" @click.prevent="gotoDevice(row.fingerprint)" title="Device history"><font-awesome-icon :icon="['fas', 'laptop']"
+              <a
+                href=""
+                @click.prevent="gotoDevice(row.fingerprint)"
+                title="Device history"
+                ><font-awesome-icon :icon="['fas', 'laptop']"
               /></a>
-              <button class="btn" @click="showLocationDetails(row.user_ip)" title="IP Address detail">
+              <button
+                class="btn"
+                @click="showLocationDetails(row.user_ip)"
+                title="IP Address detail"
+              >
                 <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
               </button>
               <span v-show="row.pat_id != null">
-                <button class="btn" @click="showUserDetailByLogin(row)" title="Activity by login">
-                <font-awesome-icon :icon="['fas', 'list']" />
-              </button>
+                <button
+                  class="btn"
+                  @click="showUserDetailByLogin(row)"
+                  title="Activity by login"
+                >
+                  <font-awesome-icon :icon="['fas', 'list']" />
+                </button>
               </span>
             </div>
           </v-server-table>
@@ -70,6 +91,7 @@
         <div class="col-12">
           <h5 class="mt-3">Saved devices</h5>
           <v-server-table
+            ref="devicetable"
             :url="
               serverurl + 'admin/users/saved-devices/' + $nuxt.$route.params.id
             "
@@ -80,13 +102,28 @@
               {{ formatDateTime(row.created_at) }}
             </div>
             <div slot="actions" slot-scope="{ row }">
-
-              <a href="" @click.prevent="gotoDevice(row.fingerprint)" title="Device history"><font-awesome-icon :icon="['fas', 'laptop']"
+              <a
+                href=""
+                @click.prevent="gotoDevice(row.fingerprint)"
+                title="Device history"
+                ><font-awesome-icon :icon="['fas', 'laptop']"
               /></a>
-              <button class="btn" @click="showLocationDetails(row.ip_address)" title="IP Address detail">
+              <button
+                class="btn"
+                @click="showLocationDetails(row.ip_address)"
+                title="IP Address detail"
+              >
                 <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
               </button>
 
+              <button
+               v-show="$can('user_update')"
+                class="btn"
+                @click="deleteSavedDevice(row.id)"
+                title="Delete this device"
+              >
+                <font-awesome-icon :icon="['far', 'trash-alt']" />
+              </button>
             </div>
           </v-server-table>
         </div>
@@ -103,19 +140,19 @@
             <div slot="created_at" slot-scope="{ row }">
               {{ formatDateTime(row.created_at) }}
             </div>
-             <div slot="actions" slot-scope="{ row }">
-
-
+            <div slot="actions" slot-scope="{ row }">
               <span v-show="row.pat_id != null">
-                <button class="btn" @click="showUserDetailByLogin(row)" title="Activity by login">
-                <font-awesome-icon :icon="['fas', 'list']" />
-              </button>
+                <button
+                  class="btn"
+                  @click="showUserDetailByLogin(row)"
+                  title="Activity by login"
+                >
+                  <font-awesome-icon :icon="['fas', 'list']" />
+                </button>
               </span>
             </div>
           </v-server-table>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -130,7 +167,7 @@ export default {
       loading: false,
       form: {},
       activity: {
-        columns: ['id', 'activity', 'label', 'created_at','actions'],
+        columns: ['id', 'activity', 'label', 'created_at', 'actions'],
         options: {
           perPage: 10,
           perPageValues: [5, 10, 15, 25, 50, 100],
@@ -185,7 +222,14 @@ export default {
 
       devices: {
         columns: [
-          'id',  'ip_address', 'location', 'device', 'fingerprint', 'platform', 'created_at' ,'actions'
+          'id',
+          'ip_address',
+          'location',
+          'device',
+          'fingerprint',
+          'platform',
+          'created_at',
+          'actions',
         ],
         options: {
           perPage: 10,
@@ -283,7 +327,31 @@ export default {
         })
     },
 
-    gotoDevice(data){
+    deleteSavedDevice(id) {
+      let vm = this
+      if (confirm('Are you sure ?') == false) {
+        return
+      }
+      console.log(id)
+      vm.$axios
+        .delete('admin/users/saved-device-delete/' + id)
+        .then((res) => {
+          if (res.data.hasOwnProperty('message')) {
+            this.getmessage(res.data.message)
+            this.$refs.devicetable.refresh()
+          }
+        })
+        .catch((err) => {
+          console.log('Errrr', err)
+          if (err.response.data.hasOwnProperty('message')) {
+            this.getmessage(err.response.data.message)
+          } else {
+            this.getmessage('')
+          }
+        })
+    },
+
+    gotoDevice(data) {
       console.log(data)
       this.$nuxt.$router.push('/users/device/' + data)
     },
@@ -296,12 +364,17 @@ export default {
       console.log(data)
       this.$nuxt.$router.push('/users/detail/' + data.user_id)
     },
-     showUserDetailByLogin(data) {
+    showUserDetailByLogin(data) {
       console.log(data)
       this.$nuxt.$router.push('/users/activity-by-login/' + data.pat_id)
     },
-
-
+    edit(data) {
+      console.log(data)
+      this.$nuxt.$router.push('/users/edit/' + data.id)
+      // this.$router.push({
+      //   path: '/users/edit/' + data.id,
+      // })
+    },
   },
 }
 </script>
