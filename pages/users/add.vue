@@ -142,7 +142,7 @@
                     <div class="col-12">
                       <fieldset class="form-group">
                         <label for="whitelisted">Whitelisted</label>
-                        <select
+                        <select disabled
                           class="form-select"
                           id="whitelisted"
                           v-model.trim="$v.form.whitelisted.$model"
