@@ -25,16 +25,19 @@ var mixin = {
   async asyncData({ $axios, store, app }) {
     console.log('[permissions] from async data')
     $axios
-      .get('/admin/permissions')
+      .get('/admin/admin-permissions')
       .then((res) => {
-        console.log(process.env.AUTH_URL)
+        // console.log(process.env.AUTH_URL)
         if (res.status == 200) {
-          const permissions = res.data.data.map((e) => e.name)
+          // const permissions = res.data.data.map((e) => e.name)
+          const permissions = res.data
+
+          console.log(permissions)
 
           store.commit('permissions/addPermissions', permissions)
-          app.$gates.setPermissions(permissions)
+          // app.$gates.setPermissions(permissions)
 
-          console.log(app.$gates.getPermissions())
+          // console.log(app.$gates.getPermissions())
           // const { can, rules } = new AbilityBuilder()
           // $ability.update(can(...res.data))
         }
