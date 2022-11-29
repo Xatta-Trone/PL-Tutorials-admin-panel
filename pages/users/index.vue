@@ -13,7 +13,7 @@
       ></pageheader>
 
       <div class="row" v-show="$can('user_ban_check')">
-        <userbancheck/>
+        <userbancheck />
       </div>
 
       <div class="col-12">
@@ -35,6 +35,10 @@
         :columns="columns"
         :options="options"
       >
+        <div slot="created_at" slot-scope="{ row }">
+          {{ formatDateTime(row.created_at) }}
+        </div>
+
         <div slot="status" slot-scope="{ row }">
           <span
             v-show="row.deleted_at == null"
@@ -121,7 +125,15 @@ export default {
       loading: false,
       error: false,
       selectData: 'all',
-      columns: ['id', 'name', 'email', 'student_id', 'status', 'actions'],
+      columns: [
+        'id',
+        'name',
+        'email',
+        'student_id',
+        'status',
+        'created_at',
+        'actions',
+      ],
       options: {
         perPage: 10,
         perPageValues: [5, 10, 15, 25, 50, 100],
@@ -229,8 +241,8 @@ export default {
     },
 
     userresetpass(data) {
-      console.log(data);
-       let confirm = prompt("Please enter your student id to confirm");
+      console.log(data)
+      let confirm = prompt('Please enter your student id to confirm')
 
       if (confirm != null && confirm == this.$auth.user.student_id) {
         console.log(data.deleted_at != null)
@@ -256,8 +268,8 @@ export default {
               this.getmessage('')
             }
           })
-      }else{
-        this.$toast.error('Student id does not match!!');
+      } else {
+        this.$toast.error('Student id does not match!!')
       }
     },
   },

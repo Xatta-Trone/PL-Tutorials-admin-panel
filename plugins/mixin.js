@@ -129,6 +129,47 @@ var mixin = {
       })
     },
 
+    formatDateTime(stringdate) {
+      // console.log(stringdate)
+      var date = new Date(stringdate)
+      // return today.toLocaleString('en-us', options)
+
+      var strArray = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ]
+      var d = date.getDate()
+      var m = strArray[date.getMonth()]
+      var y = date.getFullYear()
+      var hours = date.getHours() >= 12 ? date.getHours() - 12 : date.getHours()
+      var minutes = date.getMinutes()
+      var ampm = hours >= 12 ? 'PM' : 'AM'
+      return (
+        '' +
+        (d <= 9 ? '0' + d : d) +
+        '-' +
+        m +
+        '-' +
+        y +
+        ' ' +
+        hours +
+        ':' +
+        minutes +
+        ' ' +
+        ampm
+      )
+    },
+
     timeSince(date) {
       console.log(date)
       var seconds = Math.floor((new Date() - Date.parse(date)) / 1000)

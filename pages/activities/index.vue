@@ -14,6 +14,9 @@
         :columns="columns"
         :options="options"
       >
+        <div slot="created_at" slot-scope="{ row }">
+          {{ formatDateTime(row.created_at) }}
+        </div>
         <div slot="causer.name" slot-scope="{ row }">
           {{ row.causer.name }} ({{ row.causer.student_id }})
         </div>
@@ -60,6 +63,7 @@ export default {
         'causer_type',
         'activity',
         'label',
+        'created_at',
         'actions',
       ],
       options: {
