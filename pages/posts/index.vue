@@ -30,13 +30,20 @@
           slot-scope="{ row }"
           class="d-flex justify-content-around"
         >
-          <a
+          <!-- <a
             v-show="$can('post_update')"
             href=""
             @click.prevent="edit(row)"
             title="Post Edit"
             ><font-awesome-icon :icon="['far', 'edit']"
-          /></a>
+          /></a> -->
+
+          <NuxtLink
+            v-show="$can('post_update')"
+            :to="'/posts/edit/' + row.id"
+            title="Post Edit"
+            ><font-awesome-icon :icon="['far', 'edit']"
+          /></NuxtLink>
 
           <a
             v-show="$can('post_delete')"
