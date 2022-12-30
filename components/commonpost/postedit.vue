@@ -381,8 +381,8 @@ export default {
 
       for (const key in this.form) {
         // console.log(this.form[key], this.form[key] === '')
-        console.log(key, this.form[key] == null, this.form[key] !== '')
-        if (this.form[key] !== '') {
+        console.log(key, this.form[key] == null, this.form[key] != '')
+        if (this.form[key] != null || (this.form[key] != null && this.form[key].length > 0)) {
           bodyFormData.append(key, this.form[key])
         }
       }
