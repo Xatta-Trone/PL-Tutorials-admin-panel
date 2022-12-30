@@ -62,12 +62,11 @@
               {{ formatDateTime(row.created_at) }}
             </div>
             <div slot="actions" slot-scope="{ row }">
-              <a
-                href=""
-                @click.prevent="gotoDevice(row.fingerprint)"
+              <NuxtLink
+                :to="'/users/device/' + row.fingerprint"
                 title="Device history"
                 ><font-awesome-icon :icon="['fas', 'laptop']"
-              /></a>
+              /></NuxtLink>
               <button
                 class="btn"
                 @click="showLocationDetails(row.user_ip)"
@@ -117,7 +116,7 @@
               </button>
 
               <button
-               v-show="$can('user_update')"
+                v-show="$can('user_update')"
                 class="btn"
                 @click="deleteSavedDevice(row.id)"
                 title="Delete this device"
@@ -153,6 +152,45 @@
             </div>
           </v-server-table>
         </div>
+
+        <!-- whitelisted location -->
+        <div class="col-12">
+          <h5 class="mt-3">Whitelisted data</h5>
+          <v-server-table
+            :url="
+              serverurl + 'admin/users/whitelisted/' + $nuxt.$route.params.id
+            "
+            :columns="whitelisted.columns"
+            :options="whitelisted.options"
+          >
+            <div slot="created_at" slot-scope="{ row }">
+              {{ formatDateTime(row.created_at) }}
+            </div>
+            <div
+              slot="actions"
+              slot-scope="{ row }"
+              class="d-flex justify-content-around"
+            >
+              <a
+                href=""
+                v-show="$can('user_update')"
+                @click.prevent="editWhitelisted(row.id)"
+                title="Edit"
+                ><font-awesome-icon :icon="['far', 'edit']"
+              /></a>
+
+              <a
+                v-show="$can('user_delete')"
+                href=""
+                title="Delete"
+                @click.prevent="handleDeleteWhitelisted(row)"
+                ><font-awesome-icon
+                  class="text-danger"
+                  :icon="['far', 'trash-alt']"
+              /></a>
+            </div>
+          </v-server-table>
+        </div>
       </div>
     </div>
   </div>
@@ -168,6 +206,34 @@ export default {
       form: {},
       activity: {
         columns: ['id', 'activity', 'label', 'created_at', 'actions'],
+        options: {
+          perPage: 10,
+          perPageValues: [5, 10, 15, 25, 50, 100],
+          pagination: { chunk: 5 },
+          orderBy: { ascending: false },
+          requestFunction(data) {
+            let vm = this
+            return this.$axios
+              .get(this.url, {
+                params: data,
+              })
+              .catch(function (e) {
+                // this.dispatch('error', e)
+                console.log('Err in datatble', e)
+                vm.getmessage('Err in datatble')
+              })
+          },
+        },
+      },
+      whitelisted: {
+        columns: [
+          'id',
+          'access_type',
+          'data_type',
+          'data',
+          'created_at',
+          'actions',
+        ],
         options: {
           perPage: 10,
           perPageValues: [5, 10, 15, 25, 50, 100],
@@ -351,9 +417,44 @@ export default {
         })
     },
 
+
+     handleDeleteWhitelisted(data) {
+      let msg = 'Are you sure ?'
+
+
+      if (confirm(msg)) {
+        let vm = this
+        vm.loading = true
+        this.$axios
+          .delete(
+            '/admin/whitelisted/' +
+              data.id
+          )
+          .then((res) => {
+            vm.loading = false
+            if (res.data.hasOwnProperty('message')) {
+              this.getmessage(res.data.message)
+            }
+            // if (res.data.hasKey('status')) this.getmessage()
+          })
+          .catch((err) => {
+            vm.loading = false
+            console.log(err)
+            if (err.response.data.hasOwnProperty('message')) {
+              this.getmessage(err.response.data.message)
+            }
+          })
+      }
+    },
+
     gotoDevice(data) {
       console.log(data)
       this.$nuxt.$router.push('/users/device/' + data)
+    },
+
+      editWhitelisted(id) {
+      console.log(id)
+      this.$nuxt.$router.push('/whitelisted/edit/' + id)
     },
 
     showLocationDetails(data) {

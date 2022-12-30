@@ -95,6 +95,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {
+      src: '~/plugins/axios.js',
+    },
+    {
       src: '~/plugins/mazer/js/bootstrap.min.js',
       ssr: false,
     },
@@ -213,9 +216,9 @@ export default {
       //   config.headers.common['client'] = store.state.user.headers.client
       //   config.headers.common['expiry'] = store.state.user.headers.expiry
       //   config.headers.common['uid'] = store.state.user.headers.uid
-      config.headers.common['Access-Control-Allow-Origin'] = '*'
-
-      //   return config
+      // config.headers.common['Access-Control-Allow-Origin'] = '*'
+      // config.headers.common['API-V'] = '2'
+      // return config
     },
     // responseInterceptor: (res, ctx) => {},
     // proxy: true,

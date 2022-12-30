@@ -51,6 +51,13 @@ export default [
   },
 
   {
+    name: 'Whitelisted',
+    url: '/whitelisted',
+    icon: 'grid-fill',
+    permission: 'user_show',
+  },
+
+  {
     name: 'Contacts',
     url: '/contacts',
     icon: 'grid-fill',
