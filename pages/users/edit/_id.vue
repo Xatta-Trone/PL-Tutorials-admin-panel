@@ -202,6 +202,38 @@
                   </div>
                 </custom-form>
 
+                <custom-form
+                      :validator="$v.form.dept_access"
+                      attribute="dept_access"
+                    >
+                      <div class="col-12">
+                        <fieldset class="form-group">
+                          <label for="dept_access">Accessible departments</label>
+                          <select
+                            class="choices form-select multiple-remove"
+                            id="dept_access"
+                            v-model.trim="form.dept_access"
+                            name="dept_access"
+                            multiple="multiple"
+                          >
+                            <option value="">Select additional departments for this user only</option>
+                            <option
+                              v-for="department in accessible_departments"
+                              :key="department"
+                              :value="department"
+                            >
+                              {{ department }}
+                            </option>
+                          </select>
+
+                        </fieldset>
+                        <custom-error
+                          :servererrors="serverErrors"
+                          chkkey="dept_access"
+                        />
+                      </div>
+                    </custom-form>
+
                 <div class="col-12 d-flex justify-content-end">
                   <button
                     type="submit"
@@ -248,8 +280,23 @@ export default {
         status: 1,
         whitelisted: 1,
         user_letter: '',
-        max_devices: ''
+        max_devices: '',
+        dept_access: [],
       },
+      accessible_departments: [
+        'arch',
+        'bme',
+        'ce',
+        'che',
+        'cse',
+        'eee',
+        'ipe',
+        'me',
+        'mme',
+        'name',
+        'urp',
+        'wre',
+      ],
     }
   },
   mounted() {
@@ -272,6 +319,12 @@ export default {
         .then((res) => {
           vm.loading = false
           console.log(res)
+          if (res.data.user.dept_access == null) {
+            res.data.user.dept_access = []
+          } else {
+            res.data.user.dept_access =
+              res.data.user.dept_access.split(',')
+          }
           vm.form = res.data.user
 
           // if (res.data.hasKey('status')) this.getmessage()

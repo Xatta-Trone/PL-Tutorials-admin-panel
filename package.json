@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "build-dev": "set NODE_ENV=staging && nuxt generate",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
