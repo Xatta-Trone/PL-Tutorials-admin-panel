@@ -1,0 +1,31 @@
+name: PL Production
+
+on:
+  push:
+    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "production" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Deploying
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.SSHKEY }}
+        script: |
+          cd /var/www/pladmin
+          sudo git add .
+          sudo git commit -m "asdf"
+          sudo git pull origin main --rebase
+          sudo cp ./.htaccess dist
+          # sudo npm run i --force
+          # sudo npm run build
+          sudo service apache2 restart
