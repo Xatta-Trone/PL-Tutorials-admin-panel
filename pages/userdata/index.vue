@@ -35,6 +35,7 @@ export default {
         'student_name',
         'merit',
         'student_id',
+        'grad_level',
         'hall_name',
         'actions',
       ],
